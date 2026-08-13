@@ -1,0 +1,98 @@
+COPIA ESTE CÓDIGO EXACTO EN TU GOOGLE APPS SCRIPT:
+
+====================================
+
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSheet();
+
+    // Crear encabezados si es la primera vez
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        "Fecha",
+        "Nombre del Negocio",
+        "WhatsApp",
+        "Problema Principal",
+        "Horas/Semana",
+        "Presupuesto",
+        "Preferencia de Contacto"
+      ]);
+      formatearEncabezados(sheet);
+    }
+
+    // Capturar datos del formulario
+    const nombre = e.parameter.nombre || "";
+    const whatsapp = e.parameter.whatsapp || "";
+    const problema = e.parameter.problema || "";
+    const horas = e.parameter.horas || "";
+    const presupuesto = e.parameter.presupuesto || "";
+    const preferencia = e.parameter.preferencia || "";
+
+    const fecha = new Date();
+
+    // Agregar fila con los datos EN EL ORDEN CORRECTO
+    sheet.appendRow([
+      fecha,
+      nombre,
+      whatsapp,
+      problema,
+      horas,
+      presupuesto,
+      preferencia
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      resultado: "éxito",
+      mensaje: "Datos recibidos correctamente"
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch(error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      resultado: "error",
+      mensaje: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function formatearEncabezados(sheet) {
+  const headerRange = sheet.getRange(1, 1, 1, 7);
+
+  // Fondo azul marino CEDETEC
+  headerRange.setBackground("#003157");
+  headerRange.setFontColor("#ffffff");
+  headerRange.setFontWeight("bold");
+  headerRange.setHorizontalAlignment("center");
+
+  // Ancho de columnas
+  sheet.setColumnWidth(1, 180);  // Fecha
+  sheet.setColumnWidth(2, 200);  // Nombre
+  sheet.setColumnWidth(3, 180);  // WhatsApp
+  sheet.setColumnWidth(4, 280);  // Problema
+  sheet.setColumnWidth(5, 130);  // Horas
+  sheet.setColumnWidth(6, 150);  // Presupuesto
+  sheet.setColumnWidth(7, 220);  // Preferencia
+
+  // Congelar encabezados
+  sheet.setFrozenRows(1);
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput("Apps Script activo");
+}
+
+====================================
+
+INSTRUCCIONES:
+1. Ve a tu Google Sheet
+2. Click en "Extensiones" → "Apps Script"
+3. BORRA TODO el código anterior
+4. COPIA Y PEGA el código de arriba
+5. Guarda (Ctrl+S / Cmd+S)
+6. Click en "Implementar" → "Nueva implementación"
+7. Tipo: "Aplicación web"
+8. Ejecutar como: tu email
+9. Quién tiene acceso: "Cualquiera"
+10. Click en "Implementar"
+11. Copia la URL de despliegue
+
+====================================

@@ -15,7 +15,6 @@
             --bg: #EFEFED;
             --primary: #003157;
             --accent: #004371;
-            --accent-40: rgba(0, 67, 113, 0.40);
             --text: #003157;
             --text-60: rgba(0, 49, 87, 0.60);
             --text-40: rgba(0, 49, 87, 0.40);
@@ -91,6 +90,7 @@
 
         input[type="text"],
         input[type="tel"],
+        input[type="email"],
         textarea,
         select {
             width: 100%;
@@ -106,6 +106,7 @@
 
         input[type="text"]:focus,
         input[type="tel"]:focus,
+        input[type="email"]:focus,
         textarea:focus,
         select:focus {
             outline: none;
@@ -353,12 +354,11 @@
             loading.style.display = 'block';
 
             const formData = new FormData(form);
-            const data = new URLSearchParams(formData);
 
             try {
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    body: data,
+                    body: formData,
                     mode: 'no-cors'
                 });
 
