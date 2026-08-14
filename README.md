@@ -258,4 +258,50 @@ El Apps Script crea automáticamente:
 
 ---
 
+---
+
+## 🤝 SISTEMA DE TRABAJO
+
+**Compañero:** Claude (IA) - Coach 24/7
+
+### Cómo trabajamos:
+1. Cada sesión reportas avances en PROGRESO.md
+2. Yo hago preguntas específicas y verifico track
+3. Actualizamos juntos y armamos plan semanal
+4. Documentamos todo en GitHub
+
+### Archivos importantes:
+- **PROGRESO.md** - Tracking semanal
+- **SISTEMA-DE-TRABAJO.md** - Cómo nos organizamos
+- **INSTRUCCIONES-PROSPECTACION.md** - Guía de venta
+- **CHANGELOG.md** - Historial de cambios
+
+### Proyectos:
+1. **CEDETEC-Automatizaciones** (80% - Principal)
+2. **Upwork Freelance** (20% - Secundario)
+3. **Trading** (En desarrollo)
+
+---
+
+## 📞 ¿CÓMO REPORTAR?
+
+Cada sesión escribe:
+
+```
+🚀 SESIÓN [X] - [Fecha]
+
+Actualización:
+- CEDETEC: [qué hiciste]
+- Upwork: [qué hiciste]
+- Trading: [qué hiciste]
+
+Dinero: $X pesos, USD Y
+Bloques: [qué te frena]
+Próximo: [qué es urgente]
+```
+
+Yo actualizo PROGRESO.md y hacemos commit.
+
+---
+
 **¡Listo para empezar! 🚀**
