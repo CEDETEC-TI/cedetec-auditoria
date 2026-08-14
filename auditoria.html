@@ -21,18 +21,15 @@
             --text-40: rgba(0, 49, 87, 0.40);
             --border: rgba(0, 49, 87, 0.10);
             --success: #10b981;
-            --error: #ef4444;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             color: var(--text);
-            line-height: 1.75;
-            background: var(--white);
-        }
-
-        html {
-            scroll-behavior: smooth;
+            background: linear-gradient(135deg, var(--white) 0%, var(--bg) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* HEADER */
@@ -40,9 +37,6 @@
             background: var(--white);
             padding: 20px 32px;
             border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -55,162 +49,114 @@
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.04em;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        nav {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        nav a {
-            font-size: 14px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        /* MAIN */
-        main {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 80px 32px;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 16px;
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: var(--text-60);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.9;
-        }
-
-        /* FORM CONTAINER */
-        .form-container {
-            background: var(--bg);
-            padding: 60px 40px;
-            border-radius: 12px;
-            max-width: 700px;
-            margin: 0 auto;
-            box-shadow: 0 8px 32px rgba(0, 49, 87, 0.08);
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-header h2 {
             font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+            text-decoration: none;
         }
 
-        .form-header p {
-            font-size: 14px;
-            color: var(--text-60);
+        /* MAIN CONTAINER */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 32px;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 600px;
         }
 
         /* PROGRESS BAR */
-        .progress-container {
+        .progress-section {
             margin-bottom: 40px;
         }
 
         .progress-bar {
             width: 100%;
-            height: 4px;
+            height: 6px;
             background: var(--border);
-            border-radius: 2px;
+            border-radius: 3px;
             overflow: hidden;
+            margin-bottom: 12px;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
         }
 
         .progress-text {
+            font-size: 14px;
+            color: var(--text-40);
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* QUESTION CONTAINER */
+        .question-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px rgba(0, 49, 87, 0.1);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .question-container.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .question-container.exit {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        .question-number {
             font-size: 12px;
             color: var(--text-40);
-            margin-top: 8px;
-            text-align: right;
-        }
-
-        /* FORM GROUP */
-        .form-group {
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
         }
 
-        .required {
-            color: var(--error);
+        .question-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 32px;
+            line-height: 1.3;
         }
 
+        /* INPUT STYLES */
         input[type="text"],
         input[type="tel"],
         textarea,
         select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 16px;
             border: 2px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text);
             background: var(--white);
             transition: all 0.3s;
+            margin-bottom: 24px;
         }
 
         input[type="text"]:focus,
@@ -219,25 +165,17 @@
         select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 49, 87, 0.08);
-            background: var(--white);
-        }
-
-        input[type="text"]:hover:not(:focus),
-        input[type="tel"]:hover:not(:focus),
-        textarea:hover:not(:focus),
-        select:hover:not(:focus) {
-            border-color: var(--text-40);
+            box-shadow: 0 0 0 4px rgba(0, 49, 87, 0.1);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
-            font-size: 14px;
+            min-height: 80px;
+            font-size: 16px;
         }
 
-        /* RADIO BUTTONS */
-        .radio-group {
+        /* RADIO OPTIONS */
+        .radio-options {
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -246,11 +184,12 @@
         .radio-option {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
+            padding: 16px;
             border: 2px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 8px;
         }
 
         .radio-option:hover {
@@ -259,151 +198,201 @@
         }
 
         .radio-option input[type="radio"] {
-            margin-right: 12px;
+            margin-right: 16px;
             cursor: pointer;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             accent-color: var(--primary);
         }
 
-        .radio-option input[type="radio"]:checked ~ label {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
         .radio-option label {
-            margin: 0;
             cursor: pointer;
             flex: 1;
             font-weight: 500;
-        }
-
-        .radio-option input[type="radio"]:checked + label {
-            font-weight: 600;
-            color: var(--primary);
+            margin: 0;
         }
 
         .radio-option.selected {
             border-color: var(--primary);
-            background: rgba(0, 49, 87, 0.05);
+            background: rgba(0, 49, 87, 0.08);
         }
 
-        /* SUBMIT BUTTON */
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: var(--white);
+        /* BUTTONS */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 14px 28px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 24px;
+            flex: 1;
         }
 
-        .submit-btn:hover:not(:disabled) {
+        .btn-next {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-next:hover {
             background: var(--accent);
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
+        .btn-next:disabled {
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
-        /* SUCCESS MESSAGE */
-        .success-message {
-            display: none;
-            padding: 20px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 2px solid var(--success);
-            border-radius: 8px;
-            color: var(--success);
+        .btn-back {
+            background: var(--bg);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-back:hover {
+            background: var(--border);
+        }
+
+        .btn-submit {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+        }
+
+        /* SUCCESS SCREEN */
+        .success-screen {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px rgba(0, 49, 87, 0.1);
             text-align: center;
-            margin-top: 24px;
-            animation: slideDown 0.4s ease-out;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.4s ease;
+            pointer-events: none;
         }
 
-        .success-message.show {
-            display: block;
+        .success-screen.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 24px;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            50% {
+                transform: scale(1.1);
             }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .success-text {
+            font-size: 16px;
+            color: var(--text-60);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .success-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .success-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
         }
 
         /* ERROR MESSAGE */
         .error-message {
-            font-size: 12px;
-            color: var(--error);
-            margin-top: 4px;
-            display: none;
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: -20px;
+            margin-bottom: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .error-message.show {
-            display: block;
-        }
-
-        .form-group.error input,
-        .form-group.error textarea {
-            border-color: var(--error);
+            opacity: 1;
         }
 
         /* FOOTER */
         footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 40px 32px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 24px 32px;
             text-align: center;
-            margin-top: 80px;
-        }
-
-        .footer-content {
-            max-width: 1080px;
-            margin: 0 auto;
-        }
-
-        .footer-text {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 12px;
+            color: var(--text-40);
         }
 
         /* MOBILE */
         @media (max-width: 768px) {
             main {
-                padding: 60px 24px;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .form-container {
                 padding: 40px 24px;
             }
 
-            .radio-option {
-                flex-direction: column;
-                align-items: flex-start;
+            .question-container {
+                padding: 40px 24px;
+                min-height: auto;
             }
 
-            .radio-option input[type="radio"] {
-                margin-right: 0;
-                margin-bottom: 8px;
+            .question-title {
+                font-size: 22px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            input[type="text"],
+            input[type="tel"],
+            textarea,
+            select {
+                font-size: 16px;
             }
         }
     </style>
@@ -413,53 +402,51 @@
     <header>
         <div class="header-wrapper">
             <a href="index.html" class="logo">CEDETEC</a>
-            <nav>
-                <a href="index.html">Volver</a>
-            </nav>
         </div>
     </header>
 
     <!-- MAIN -->
     <main>
-        <section class="hero">
-            <h1>Auditoría Digital Gratis</h1>
-            <p>Descubre qué tecnología necesita tu negocio. Nos comprometemos a brindarte una solución clara y práctica.</p>
-        </section>
-
-        <!-- FORM -->
-        <div class="form-container">
-            <div class="form-header">
-                <h2>Cuéntanos sobre tu negocio</h2>
-                <p>Tómate 2 minutos para completar este formulario</p>
-            </div>
-
-            <div class="progress-container">
+        <div class="form-wrapper">
+            <!-- PROGRESS BAR -->
+            <div class="progress-section">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text"><span id="progressText">0</span>% completado</div>
+                <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
             </div>
 
-            <form id="auditForm">
-                <!-- NOMBRE DEL NEGOCIO -->
-                <div class="form-group">
-                    <label for="businessName">Nombre del negocio <span class="required">*</span></label>
-                    <input type="text" id="businessName" name="businessName" placeholder="Ej: Mi Almacén" required>
+            <!-- QUESTIONS -->
+            <div id="formContainer">
+                <!-- Q1: Business Name -->
+                <div class="question-container active" data-step="1">
+                    <div class="question-number">Pregunta 1 de 7</div>
+                    <h2 class="question-title">¿Cuál es el nombre de tu negocio?</h2>
+                    <input type="text" id="businessName" placeholder="Ej: Mi Almacén" />
                     <div class="error-message"></div>
+                    <div class="button-group">
+                        <button class="btn btn-next" onclick="nextStep(1)">Siguiente</button>
+                    </div>
                 </div>
 
-                <!-- WHATSAPP -->
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp <span class="required">*</span></label>
-                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej: +54 9 3704 123456" required>
+                <!-- Q2: WhatsApp -->
+                <div class="question-container" data-step="2">
+                    <div class="question-number">Pregunta 2 de 7</div>
+                    <h2 class="question-title">¿Cuál es tu WhatsApp?</h2>
+                    <input type="tel" id="whatsapp" placeholder="Ej: +54 9 3704 123456" />
                     <div class="error-message"></div>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-next" onclick="nextStep(2)">Siguiente</button>
+                    </div>
                 </div>
 
-                <!-- PROBLEMA PRINCIPAL -->
-                <div class="form-group">
-                    <label for="mainProblem">¿Cuál es tu problema principal? <span class="required">*</span></label>
-                    <select id="mainProblem" name="mainProblem" required>
-                        <option value="">Selecciona tu problema</option>
+                <!-- Q3: Main Problem -->
+                <div class="question-container" data-step="3">
+                    <div class="question-number">Pregunta 3 de 7</div>
+                    <h2 class="question-title">¿Cuál es tu problema principal?</h2>
+                    <select id="mainProblem" onchange="updateProgress()">
+                        <option value="">Selecciona una opción</option>
                         <option value="Pierdo tiempo en inventario manual">Pierdo tiempo en inventario manual</option>
                         <option value="Gestión de turnos/citas desorganizada">Gestión de turnos/citas desorganizada</option>
                         <option value="No tengo control de mis gastos/ingresos">No tengo control de mis gastos/ingresos</option>
@@ -468,18 +455,28 @@
                         <option value="Otro problema">Otro (cuéntame en el siguiente campo)</option>
                     </select>
                     <div class="error-message"></div>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-next" onclick="nextStep(3)">Siguiente</button>
+                    </div>
                 </div>
 
-                <!-- DETALLES ADICIONALES -->
-                <div class="form-group">
-                    <label for="problemDetails">Cuéntanos más sobre tu situación (opcional)</label>
-                    <textarea id="problemDetails" name="problemDetails" placeholder="Ej: Pierdo 5 horas diarias en inventario manual, además tenemos staff en diferentes sucursales"></textarea>
+                <!-- Q4: Problem Details -->
+                <div class="question-container" data-step="4">
+                    <div class="question-number">Pregunta 4 de 7</div>
+                    <h2 class="question-title">Cuéntanos más sobre tu situación</h2>
+                    <textarea id="problemDetails" placeholder="Opcional: Agrega detalles que creas importantes..."></textarea>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-next" onclick="nextStep(4)">Siguiente</button>
+                    </div>
                 </div>
 
-                <!-- HORAS/SEMANA -->
-                <div class="form-group">
-                    <label for="hoursPerWeek">¿Cuántas horas/semana pierdes? <span class="required">*</span></label>
-                    <select id="hoursPerWeek" name="hoursPerWeek" required>
+                <!-- Q5: Hours Per Week -->
+                <div class="question-container" data-step="5">
+                    <div class="question-number">Pregunta 5 de 7</div>
+                    <h2 class="question-title">¿Cuántas horas/semana pierdes?</h2>
+                    <select id="hoursPerWeek" onchange="updateProgress()">
                         <option value="">Selecciona una opción</option>
                         <option value="Menos de 1 hora">Menos de 1 hora</option>
                         <option value="1-2 horas">1-2 horas</option>
@@ -488,12 +485,17 @@
                         <option value="Más de 10 horas">Más de 10 horas</option>
                     </select>
                     <div class="error-message"></div>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-next" onclick="nextStep(5)">Siguiente</button>
+                    </div>
                 </div>
 
-                <!-- PRESUPUESTO -->
-                <div class="form-group">
-                    <label for="budget">¿Cuál es tu presupuesto? <span class="required">*</span></label>
-                    <select id="budget" name="budget" required>
+                <!-- Q6: Budget -->
+                <div class="question-container" data-step="6">
+                    <div class="question-number">Pregunta 6 de 7</div>
+                    <h2 class="question-title">¿Cuál es tu presupuesto?</h2>
+                    <select id="budget" onchange="updateProgress()">
                         <option value="">Selecciona una opción</option>
                         <option value="Menos de $20k">Menos de $20k</option>
                         <option value="$20k - $50k">$20k - $50k</option>
@@ -502,183 +504,163 @@
                         <option value="Más de $200k">Más de $200k</option>
                     </select>
                     <div class="error-message"></div>
-                </div>
-
-                <!-- PREFERENCIA DE CONTACTO -->
-                <div class="form-group">
-                    <label>¿Cómo prefieres que te contactemos? <span class="required">*</span></label>
-                    <div class="radio-group" id="contactPreference">
-                        <div class="radio-option">
-                            <input type="radio" id="phone" name="contactPreference" value="Teléfono" required>
-                            <label for="phone">Por teléfono</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="audit" name="contactPreference" value="Auditoría personal en mi local" required>
-                            <label for="audit">Auditoría personal en mi local</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="both" name="contactPreference" value="Ambos" required>
-                            <label for="both">Ambos</label>
-                        </div>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-next" onclick="nextStep(6)">Siguiente</button>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Enviar auditoría</button>
-
-                <div class="success-message" id="successMessage">
-                    ✓ ¡Auditoría recibida! Te contactaremos en breve por WhatsApp.
+                <!-- Q7: Contact Preference -->
+                <div class="question-container" data-step="7">
+                    <div class="question-number">Pregunta 7 de 7</div>
+                    <h2 class="question-title">¿Cómo prefieres que te contactemos?</h2>
+                    <div class="radio-options">
+                        <div class="radio-option" onclick="selectRadio(this)">
+                            <input type="radio" name="contactPreference" value="Por teléfono" />
+                            <label>Por teléfono</label>
+                        </div>
+                        <div class="radio-option" onclick="selectRadio(this)">
+                            <input type="radio" name="contactPreference" value="Auditoría personal en mi local" />
+                            <label>Auditoría personal en mi local</label>
+                        </div>
+                        <div class="radio-option" onclick="selectRadio(this)">
+                            <input type="radio" name="contactPreference" value="Ambos" />
+                            <label>Ambos</label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
+                        <button class="btn btn-submit" onclick="submitForm()">Enviar auditoría</button>
+                    </div>
                 </div>
-            </form>
+            </div>
+
+            <!-- SUCCESS SCREEN -->
+            <div class="success-screen" id="successScreen">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">¡Auditoría recibida!</h2>
+                <p class="success-text">Gracias por confiar en CEDETEC. Nos contactaremos contigo en breve por WhatsApp para detallar la auditoría completa.</p>
+                <a href="https://wa.me/543704700739" class="success-btn">Ir a WhatsApp</a>
+            </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <p class="footer-text">© 2026 CEDETEC. Formosa, Argentina.</p>
-        </div>
+        <p>© 2026 CEDETEC. Formosa, Argentina.</p>
     </footer>
 
     <script>
-        const form = document.getElementById('auditForm');
-        const progressFill = document.getElementById('progressFill');
-        const progressText = document.getElementById('progressText');
-        const successMessage = document.getElementById('successMessage');
-        const contactPreferenceGroup = document.getElementById('contactPreference');
+        let currentStep = 1;
+        const totalSteps = 7;
+        const formData = {};
 
-        // Track progreso del formulario
-        const formInputs = form.querySelectorAll('input[type="text"], input[type="tel"], textarea, select, input[type="radio"]');
-
-        function updateProgress() {
-            let completed = 0;
-            let radioChecked = false;
-
-            formInputs.forEach(input => {
-                if (input.type === 'radio') {
-                    if (form.querySelector('input[name="contactPreference"]:checked')) {
-                        radioChecked = true;
-                    }
-                } else if (input.value.trim() !== '') {
-                    completed++;
-                }
+        function showStep(step) {
+            document.querySelectorAll('.question-container').forEach(el => {
+                el.classList.remove('active', 'exit');
             });
 
-            const total = formInputs.length - 2; // Restar los 2 radios duplicados
-            const percentage = Math.round((completed / total) * 100);
-
-            progressFill.style.width = percentage + '%';
-            progressText.textContent = percentage;
-        }
-
-        // Validación en tiempo real
-        function validateField(field) {
-            const errorDiv = field.parentElement.querySelector('.error-message');
-            let isValid = true;
-
-            if (field.type === 'tel') {
-                const phoneRegex = /^[\d\s+().-]+$/;
-                if (!phoneRegex.test(field.value)) {
-                    errorDiv.textContent = 'Por favor ingresa un teléfono válido';
-                    isValid = false;
-                }
-            } else if (field.value.trim() === '') {
-                errorDiv.textContent = 'Este campo es requerido';
-                isValid = false;
+            const currentQuestion = document.querySelector(`[data-step="${step}"]`);
+            if (currentQuestion) {
+                currentQuestion.classList.add('active');
             }
 
-            if (isValid) {
-                errorDiv.classList.remove('show');
-                field.parentElement.classList.remove('error');
-            } else {
+            updateProgress();
+        }
+
+        function nextStep(step) {
+            const input = document.querySelector(`[data-step="${step}"] input[type="text"], [data-step="${step}"] input[type="tel"], [data-step="${step}"] select, [data-step="${step}"] textarea`);
+
+            if (!input || input.value.trim() === '') {
+                const errorDiv = document.querySelector(`[data-step="${step}"] .error-message`);
+                errorDiv.textContent = 'Por favor completa este campo';
                 errorDiv.classList.add('show');
-                field.parentElement.classList.add('error');
-            }
-
-            return isValid;
-        }
-
-        // Event listeners
-        formInputs.forEach(input => {
-            if (input.type !== 'radio') {
-                input.addEventListener('input', updateProgress);
-                input.addEventListener('blur', () => validateField(input));
-                input.addEventListener('focus', () => {
-                    input.parentElement.classList.remove('error');
-                });
-            } else {
-                input.addEventListener('change', () => {
-                    updateProgress();
-                    input.parentElement.classList.add('selected');
-                });
-            }
-        });
-
-        // Radio button styling
-        contactPreferenceGroup.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                contactPreferenceGroup.querySelectorAll('.radio-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                this.parentElement.classList.add('selected');
-            });
-        });
-
-        // Submit form
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Validar todos los campos
-            let isFormValid = true;
-            formInputs.forEach(input => {
-                if (input.type !== 'radio' && !validateField(input)) {
-                    isFormValid = false;
-                }
-            });
-
-            if (!form.querySelector('input[name="contactPreference"]:checked')) {
-                isFormValid = false;
-            }
-
-            if (!isFormValid) {
                 return;
             }
 
-            // Preparar datos
-            const formData = {
-                timestamp: new Date().toLocaleString('es-AR'),
-                businessName: document.getElementById('businessName').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                mainProblem: document.getElementById('mainProblem').value,
-                problemDetails: document.getElementById('problemDetails').value,
-                hoursPerWeek: document.getElementById('hoursPerWeek').value,
-                budget: document.getElementById('budget').value,
-                contactPreference: document.querySelector('input[name="contactPreference"]:checked').value
-            };
+            // Validar teléfono
+            if (step === 2) {
+                const phoneRegex = /^[\d\s+().-]{9,}$/;
+                if (!phoneRegex.test(input.value)) {
+                    const errorDiv = document.querySelector(`[data-step="${step}"] .error-message`);
+                    errorDiv.textContent = 'Por favor ingresa un teléfono válido';
+                    errorDiv.classList.add('show');
+                    return;
+                }
+            }
 
-            // Enviar a Google Sheets (usando Apps Script)
+            // Guardar dato
+            if (step === 1) formData.businessName = input.value;
+            if (step === 2) formData.whatsapp = input.value;
+            if (step === 3) formData.mainProblem = input.value;
+            if (step === 5) formData.hoursPerWeek = input.value;
+            if (step === 6) formData.budget = input.value;
+
+            currentStep = step + 1;
+            if (currentStep <= totalSteps) {
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            currentStep--;
+            if (currentStep >= 1) {
+                showStep(currentStep);
+            }
+        }
+
+        function selectRadio(element) {
+            document.querySelectorAll('.radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const completed = Object.keys(formData).length;
+            const radioSelected = document.querySelector('input[name="contactPreference"]:checked') ? 1 : 0;
+            const total = totalSteps;
+
+            const percentage = Math.round(((completed + radioSelected) / total) * 100);
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressPercent').textContent = percentage;
+        }
+
+        async function submitForm() {
+            // Validar radio
+            const selectedRadio = document.querySelector('input[name="contactPreference"]:checked');
+            if (!selectedRadio) {
+                alert('Por favor selecciona una opción de contacto');
+                return;
+            }
+
+            formData.contactPreference = selectedRadio.value;
+            formData.problemDetails = document.getElementById('problemDetails').value;
+            formData.timestamp = new Date().toLocaleString('es-AR');
+
+            // Enviar a Google Sheets
             const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/d/1-h_BnBfG5Kno4bR6H8P4qL9R2S3T4U5V/usercontent/exec';
 
             try {
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                await fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     mode: 'no-cors'
                 });
 
-                // Mostrar mensaje de éxito
-                form.style.display = 'none';
-                successMessage.classList.add('show');
-
-                // Redirigir a WhatsApp después de 3 segundos
-                setTimeout(() => {
-                    window.location.href = `https://wa.me/543704700739?text=Hola, acabo de completar la auditoría digital. Mi nombre es ${formData.businessName}`;
-                }, 3000);
+                // Mostrar pantalla de éxito
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successScreen').classList.add('active');
 
             } catch (error) {
                 console.error('Error:', error);
                 alert('Hubo un error. Por favor intenta de nuevo.');
             }
-        });
+        }
+
+        updateProgress();
     </script>
 </body>
 </html>
