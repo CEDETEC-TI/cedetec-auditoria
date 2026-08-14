@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatización de Procesos - CEDETEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003157;
+            --accent: #004371;
+            --bg: #EFEFED;
+            --white: #ffffff;
+            --text: #003157;
+            --text-60: rgba(0, 49, 87, 0.60);
+            --text-40: rgba(0, 49, 87, 0.40);
+            --border: rgba(0, 49, 87, 0.10);
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text);
+            line-height: 1.75;
+            background: var(--white);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--white);
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-60);
+            text-decoration: none;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 80px 32px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-60);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.9;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(0, 49, 87, 0.15);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--primary);
+        }
+
+        section p {
+            font-size: 16px;
+            color: var(--text-60);
+            line-height: 2;
+            margin-bottom: 24px;
+        }
+
+        /* BENEFITS GRID */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .benefit {
+            background: var(--bg);
+            padding: 28px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .benefit:hover {
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .benefit h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .benefit p {
+            font-size: 14px;
+            color: var(--text-60);
+            margin: 0;
+        }
+
+        /* CASES */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .case {
+            background: var(--white);
+            border: 2px solid var(--border);
+            padding: 28px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .case:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);
+        }
+
+        .case-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .case h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .case p {
+            font-size: 14px;
+            color: var(--text-60);
+            margin: 0;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: var(--bg);
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 32px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            main {
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-wrapper">
+            <a href="../index.html" class="logo">CEDETEC</a>
+            <nav>
+                <a href="../index.html">Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <a href="../index.html" class="back-link">← Volver a servicios</a>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Automatización de Procesos</h1>
+            <p>Imagina tener más tiempo para lo que realmente importa. La automatización te libera de tareas repetitivas para que puedas enfocarte en crecer.</p>
+            <a href="../auditoria.html" class="cta-primary">Solicitar auditoría para este servicio</a>
+        </section>
+
+        <!-- QUÉ ES -->
+        <section>
+            <h2>¿Qué es la automatización?</h2>
+            <p>La automatización es el uso de tecnología para realizar tareas repetitivas de forma automática, sin necesidad de intervención manual. Es como tener un asistente que trabaja 24/7 sin cansarse.</p>
+            <p>En lugar de perder horas en tareas mecánicas, tu equipo puede dedicarse a decisiones estratégicas y crear valor real para tu negocio.</p>
+        </section>
+
+        <!-- BENEFICIOS -->
+        <section>
+            <h2>Beneficios principales</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <h3>⏱️ Ahorro de tiempo</h3>
+                    <p>Reduce tareas que toman horas a solo minutos. Recupera tiempo precioso cada día.</p>
+                </div>
+                <div class="benefit">
+                    <h3>🎯 Mayor precisión</h3>
+                    <p>Elimina errores humanos. La automatización es consistente y confiable.</p>
+                </div>
+                <div class="benefit">
+                    <h3>💰 Reducción de costos</h3>
+                    <p>Menos trabajo manual = menos gastos. Mejora tu rentabilidad.</p>
+                </div>
+                <div class="benefit">
+                    <h3>📈 Escalabilidad</h3>
+                    <p>Crece sin aumentar la carga de trabajo de tu equipo.</p>
+                </div>
+                <div class="benefit">
+                    <h3>😌 Menos estrés</h3>
+                    <p>Tu equipo se enfoca en tareas creativas, no en trabajo repetitivo.</p>
+                </div>
+                <div class="benefit">
+                    <h3>🚀 Competitividad</h3>
+                    <p>Muévete más rápido que tu competencia. Responde a cambios al instante.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASOS DE USO -->
+        <section>
+            <h2>Dónde funciona mejor</h2>
+            <div class="cases-grid">
+                <div class="case">
+                    <div class="case-icon">📧</div>
+                    <h3>Email y mensajes</h3>
+                    <p>Envía notificaciones, confirmaciones y seguimientos de forma automática.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">📊</div>
+                    <h3>Reportes y datos</h3>
+                    <p>Genera reportes diarios, semanales o mensuales sin tocar nada.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">💼</div>
+                    <h3>Seguimiento de ventas</h3>
+                    <p>Registro automático de clientes, pedidos y transacciones.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">📋</div>
+                    <h3>Gestión de tareas</h3>
+                    <p>Asignación automática de trabajos según reglas que tú defines.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">🔗</div>
+                    <h3>Sincronización</h3>
+                    <p>Mantén tus sistemas conectados sin hacer nada manualmente.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">✅</div>
+                    <h3>Validación</h3>
+                    <p>Verifica datos automáticamente y alerta de anomalías.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cta-section">
+            <h2>¿Listo para automatizar?</h2>
+            <p>Descubre qué procesos de tu negocio podrían beneficiarse de la automatización. La auditoría digital gratis te mostrará exactamente por dónde empezar.</p>
+            <a href="../auditoria.html" class="cta-primary">Solicitar auditoría ahora</a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 CEDETEC. Formosa, Argentina.</p>
+        </div>
+    </footer>
+</body>
+</html>
