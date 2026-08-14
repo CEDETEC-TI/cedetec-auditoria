@@ -27,10 +27,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             color: var(--text);
             background: linear-gradient(135deg, var(--white) 0%, var(--bg) 100%);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            padding-bottom: 40px;
         }
 
         /* HEADER */
@@ -39,6 +36,9 @@
             padding: 20px 32px;
             border-bottom: 1px solid var(--border);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-wrapper {
@@ -59,26 +59,19 @@
 
         /* MAIN CONTAINER */
         main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 32px;
-            overflow: hidden;
-        }
-
-        .form-wrapper {
-            width: 100%;
-            max-width: 600px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            max-height: calc(100vh - 140px);
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 32px;
         }
 
         /* PROGRESS BAR */
         .progress-section {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 70px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--bg) 100%);
+            padding: 16px 0;
+            z-index: 99;
         }
 
         .progress-bar {
@@ -104,32 +97,56 @@
             font-weight: 500;
         }
 
-        /* QUESTION CONTAINER */
-        .question-container {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 49, 87, 0.1);
+        /* QUESTIONS CONTAINER */
+        #questionsContainer {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s ease;
-            pointer-events: none;
-            overflow-y: auto;
-            max-height: 100%;
+            gap: 24px;
         }
 
-        .question-container.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
+        /* QUESTION */
+        .question {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 16px rgba(0, 49, 87, 0.08);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.4s ease forwards;
         }
 
-        .question-container.exit {
-            opacity: 0;
-            transform: translateY(-30px);
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .question:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .question:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .question:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        .question:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+        .question:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+        .question:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .question.completed {
+            opacity: 0.7;
+            background: var(--bg);
         }
 
         .question-number {
@@ -142,11 +159,20 @@
         }
 
         .question-title {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 24px;
-            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .answer-display {
+            font-size: 16px;
+            color: var(--text-60);
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
         }
 
         /* INPUT STYLES */
@@ -157,7 +183,7 @@
             width: 100%;
             padding: 12px;
             border: 2px solid var(--border);
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: inherit;
             font-size: 16px;
             color: var(--text);
@@ -172,14 +198,12 @@
         select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(0, 49, 87, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 49, 87, 0.08);
         }
 
         textarea {
             resize: vertical;
             min-height: 60px;
-            max-height: 100px;
-            font-size: 16px;
         }
 
         /* RADIO OPTIONS */
@@ -195,7 +219,7 @@
             align-items: center;
             padding: 12px;
             border: 2px solid var(--border);
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -206,10 +230,10 @@
         }
 
         .radio-option input[type="radio"] {
-            margin-right: 16px;
+            margin-right: 12px;
             cursor: pointer;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             accent-color: var(--primary);
         }
 
@@ -229,13 +253,13 @@
         .button-group {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .btn {
-            padding: 14px 28px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
@@ -243,59 +267,57 @@
             flex: 1;
         }
 
-        .btn-next {
+        .btn-submit {
             background: var(--primary);
             color: var(--white);
+            padding: 14px 28px;
+            font-size: 16px;
         }
 
-        .btn-next:hover {
+        .btn-submit:hover {
             background: var(--accent);
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);
         }
 
-        .btn-next:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-back {
+        .btn-edit {
             background: var(--bg);
-            color: var(--text);
-            border: 2px solid var(--border);
+            color: var(--primary);
+            font-size: 13px;
+            padding: 8px 16px;
         }
 
-        .btn-back:hover {
+        .btn-edit:hover {
             background: var(--border);
         }
 
-        .btn-submit {
-            background: var(--success);
-            color: var(--white);
+        /* ERROR MESSAGE */
+        .error-message {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: -12px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+        .error-message.show {
+            opacity: 1;
         }
 
         /* SUCCESS SCREEN */
         .success-screen {
             background: var(--white);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 60px 40px;
-            box-shadow: 0 8px 32px rgba(0, 49, 87, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 49, 87, 0.08);
             text-align: center;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.4s ease;
-            pointer-events: none;
+            display: none;
         }
 
-        .success-screen.active {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: all;
+        .success-screen.show {
+            display: block;
+            animation: slideIn 0.4s ease;
         }
 
         .success-icon {
@@ -317,7 +339,7 @@
         }
 
         .success-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 16px;
@@ -336,7 +358,7 @@
             background: var(--primary);
             color: var(--white);
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
@@ -349,20 +371,6 @@
             transform: translateY(-2px);
         }
 
-        /* ERROR MESSAGE */
-        .error-message {
-            color: #ef4444;
-            font-size: 14px;
-            margin-top: -20px;
-            margin-bottom: 16px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .error-message.show {
-            opacity: 1;
-        }
-
         /* FOOTER */
         footer {
             background: var(--white);
@@ -371,36 +379,27 @@
             text-align: center;
             font-size: 12px;
             color: var(--text-40);
+            margin-top: 80px;
         }
 
         /* MOBILE */
         @media (max-width: 768px) {
             main {
-                padding: 40px 24px;
+                margin: 30px auto;
+                padding: 0 24px;
             }
 
-            .question-container {
-                padding: 40px 24px;
-                min-height: auto;
+            .question {
+                padding: 24px;
             }
 
             .question-title {
-                font-size: 22px;
-            }
-
-            .button-group {
-                flex-direction: column-reverse;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            input[type="text"],
-            input[type="tel"],
-            textarea,
-            select {
                 font-size: 16px;
+            }
+
+            .progress-section {
+                top: 60px;
+                padding: 12px 0;
             }
         }
     </style>
@@ -415,141 +414,23 @@
 
     <!-- MAIN -->
     <main>
-        <div class="form-wrapper">
-            <!-- PROGRESS BAR -->
-            <div class="progress-section">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
+        <!-- PROGRESS BAR -->
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
+            <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
+        </div>
 
-            <!-- QUESTIONS -->
-            <div id="formContainer">
-                <!-- Q1: Business Name -->
-                <div class="question-container active" data-step="1">
-                    <div class="question-number">Pregunta 1 de 7</div>
-                    <h2 class="question-title">¿Cuál es el nombre de tu negocio?</h2>
-                    <input type="text" id="businessName" placeholder="Ej: Mi Almacén" />
-                    <div class="error-message"></div>
-                    <div class="button-group">
-                        <button class="btn btn-next" onclick="nextStep(1)">Siguiente</button>
-                    </div>
-                </div>
+        <!-- QUESTIONS CONTAINER -->
+        <div id="questionsContainer"></div>
 
-                <!-- Q2: WhatsApp -->
-                <div class="question-container" data-step="2">
-                    <div class="question-number">Pregunta 2 de 7</div>
-                    <h2 class="question-title">¿Cuál es tu WhatsApp?</h2>
-                    <input type="tel" id="whatsapp" placeholder="Ej: +54 9 3704 123456" />
-                    <div class="error-message"></div>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-next" onclick="nextStep(2)">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Q3: Main Problem -->
-                <div class="question-container" data-step="3">
-                    <div class="question-number">Pregunta 3 de 7</div>
-                    <h2 class="question-title">¿Cuál es tu problema principal?</h2>
-                    <select id="mainProblem" onchange="updateProgress()">
-                        <option value="">Selecciona una opción</option>
-                        <option value="Pierdo tiempo en inventario manual">Pierdo tiempo en inventario manual</option>
-                        <option value="Gestión de turnos/citas desorganizada">Gestión de turnos/citas desorganizada</option>
-                        <option value="No tengo control de mis gastos/ingresos">No tengo control de mis gastos/ingresos</option>
-                        <option value="Comunicación desorganizada con clientes">Comunicación desorganizada con clientes</option>
-                        <option value="Duplico trabajo entre distintos sistemas">Duplico trabajo entre distintos sistemas</option>
-                        <option value="Otro problema">Otro (cuéntame en el siguiente campo)</option>
-                    </select>
-                    <div class="error-message"></div>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-next" onclick="nextStep(3)">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Q4: Problem Details -->
-                <div class="question-container" data-step="4">
-                    <div class="question-number">Pregunta 4 de 7</div>
-                    <h2 class="question-title">Cuéntanos más sobre tu situación</h2>
-                    <textarea id="problemDetails" placeholder="Opcional: Agrega detalles que creas importantes..."></textarea>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-next" onclick="nextStep(4)">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Q5: Hours Per Week -->
-                <div class="question-container" data-step="5">
-                    <div class="question-number">Pregunta 5 de 7</div>
-                    <h2 class="question-title">¿Cuántas horas/semana pierdes?</h2>
-                    <select id="hoursPerWeek" onchange="updateProgress()">
-                        <option value="">Selecciona una opción</option>
-                        <option value="Menos de 1 hora">Menos de 1 hora</option>
-                        <option value="1-2 horas">1-2 horas</option>
-                        <option value="2-5 horas">2-5 horas</option>
-                        <option value="5-10 horas">5-10 horas</option>
-                        <option value="Más de 10 horas">Más de 10 horas</option>
-                    </select>
-                    <div class="error-message"></div>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-next" onclick="nextStep(5)">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Q6: Budget -->
-                <div class="question-container" data-step="6">
-                    <div class="question-number">Pregunta 6 de 7</div>
-                    <h2 class="question-title">¿Cuál es tu presupuesto?</h2>
-                    <select id="budget" onchange="updateProgress()">
-                        <option value="">Selecciona una opción</option>
-                        <option value="Menos de $20k">Menos de $20k</option>
-                        <option value="$20k - $50k">$20k - $50k</option>
-                        <option value="$50k - $100k">$50k - $100k</option>
-                        <option value="$100k - $200k">$100k - $200k</option>
-                        <option value="Más de $200k">Más de $200k</option>
-                    </select>
-                    <div class="error-message"></div>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-next" onclick="nextStep(6)">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Q7: Contact Preference -->
-                <div class="question-container" data-step="7">
-                    <div class="question-number">Pregunta 7 de 7</div>
-                    <h2 class="question-title">¿Cómo prefieres que te contactemos?</h2>
-                    <div class="radio-options">
-                        <div class="radio-option" onclick="selectRadio(this)">
-                            <input type="radio" name="contactPreference" value="Por teléfono" />
-                            <label>Por teléfono</label>
-                        </div>
-                        <div class="radio-option" onclick="selectRadio(this)">
-                            <input type="radio" name="contactPreference" value="Auditoría personal en mi local" />
-                            <label>Auditoría personal en mi local</label>
-                        </div>
-                        <div class="radio-option" onclick="selectRadio(this)">
-                            <input type="radio" name="contactPreference" value="Ambos" />
-                            <label>Ambos</label>
-                        </div>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn btn-back" onclick="prevStep()">Atrás</button>
-                        <button class="btn btn-submit" onclick="submitForm()">Enviar auditoría</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCCESS SCREEN -->
-            <div class="success-screen" id="successScreen">
-                <div class="success-icon">✓</div>
-                <h2 class="success-title">¡Auditoría recibida!</h2>
-                <p class="success-text">Gracias por confiar en CEDETEC. Nos contactaremos contigo en breve por WhatsApp para detallar la auditoría completa.</p>
-                <a href="https://wa.me/543704700739" class="success-btn">Ir a WhatsApp</a>
-            </div>
+        <!-- SUCCESS SCREEN -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">¡Auditoría recibida!</h2>
+            <p class="success-text">Gracias por confiar en CEDETEC. Nos contactaremos contigo en breve por WhatsApp para detallar la auditoría completa.</p>
+            <a href="https://wa.me/543704700739" class="success-btn">Ir a WhatsApp</a>
         </div>
     </main>
 
@@ -559,96 +440,255 @@
     </footer>
 
     <script>
-        let currentStep = 1;
-        const totalSteps = 7;
-        const formData = {};
+        const questions = [
+            {
+                number: 1,
+                title: "¿Cuál es el nombre de tu negocio?",
+                type: "text",
+                id: "businessName",
+                placeholder: "Ej: Mi Almacén",
+                required: true
+            },
+            {
+                number: 2,
+                title: "¿Cuál es tu WhatsApp?",
+                type: "tel",
+                id: "whatsapp",
+                placeholder: "Ej: +54 9 3704 123456",
+                required: true,
+                validation: "phone"
+            },
+            {
+                number: 3,
+                title: "¿Cuál es tu problema principal?",
+                type: "select",
+                id: "mainProblem",
+                options: [
+                    "Pierdo tiempo en inventario manual",
+                    "Gestión de turnos/citas desorganizada",
+                    "No tengo control de mis gastos/ingresos",
+                    "Comunicación desorganizada con clientes",
+                    "Duplico trabajo entre distintos sistemas",
+                    "Otro problema"
+                ],
+                required: true
+            },
+            {
+                number: 4,
+                title: "Cuéntanos más sobre tu situación",
+                type: "textarea",
+                id: "problemDetails",
+                placeholder: "Opcional: Agrega detalles que creas importantes...",
+                required: false
+            },
+            {
+                number: 5,
+                title: "¿Cuántas horas/semana pierdes?",
+                type: "select",
+                id: "hoursPerWeek",
+                options: [
+                    "Menos de 1 hora",
+                    "1-2 horas",
+                    "2-5 horas",
+                    "5-10 horas",
+                    "Más de 10 horas"
+                ],
+                required: true
+            },
+            {
+                number: 6,
+                title: "¿Cuál es tu presupuesto?",
+                type: "select",
+                id: "budget",
+                options: [
+                    "Menos de $20k",
+                    "$20k - $50k",
+                    "$50k - $100k",
+                    "$100k - $200k",
+                    "Más de $200k"
+                ],
+                required: true
+            },
+            {
+                number: 7,
+                title: "¿Cómo prefieres que te contactemos?",
+                type: "radio",
+                id: "contactPreference",
+                options: [
+                    "Por teléfono",
+                    "Auditoría personal en mi local",
+                    "Ambos"
+                ],
+                required: true
+            }
+        ];
 
-        function showStep(step) {
-            document.querySelectorAll('.question-container').forEach(el => {
-                el.classList.remove('active', 'exit');
+        const formData = {};
+        let currentQuestion = 0;
+
+        function renderQuestion(index) {
+            const container = document.getElementById('questionsContainer');
+            const q = questions[index];
+
+            const questionEl = document.createElement('div');
+            questionEl.className = 'question';
+            questionEl.dataset.index = index;
+
+            let htmlContent = `
+                <div class="question-number">Pregunta ${q.number} de ${questions.length}</div>
+                <h2 class="question-title">${q.title}</h2>
+            `;
+
+            if (formData[q.id] !== undefined && formData[q.id] !== '') {
+                htmlContent += `
+                    <div class="answer-display">
+                        <strong>Respuesta:</strong> ${formData[q.id]}
+                    </div>
+                    <button class="btn btn-edit" onclick="editQuestion(${index})">Editar</button>
+                `;
+                questionEl.classList.add('completed');
+            } else {
+                // Input
+                if (q.type === 'text' || q.type === 'tel') {
+                    htmlContent += `
+                        <input type="${q.type}" id="${q.id}" placeholder="${q.placeholder}" />
+                        <div class="error-message"></div>
+                        <button class="btn btn-submit" onclick="answerQuestion(${index})">Siguiente</button>
+                    `;
+                }
+                // Textarea
+                else if (q.type === 'textarea') {
+                    htmlContent += `
+                        <textarea id="${q.id}" placeholder="${q.placeholder}"></textarea>
+                        <button class="btn btn-submit" onclick="answerQuestion(${index})">Siguiente</button>
+                    `;
+                }
+                // Select
+                else if (q.type === 'select') {
+                    htmlContent += `<select id="${q.id}" onchange="updateProgress()">
+                        <option value="">Selecciona una opción</option>
+                        ${q.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                    </select>
+                    <div class="error-message"></div>
+                    <button class="btn btn-submit" onclick="answerQuestion(${index})">Siguiente</button>`;
+                }
+                // Radio
+                else if (q.type === 'radio') {
+                    htmlContent += `
+                        <div class="radio-options">
+                            ${q.options.map((opt, i) => `
+                                <div class="radio-option" onclick="selectRadio(this, ${index})">
+                                    <input type="radio" name="contactPreference" value="${opt}" />
+                                    <label>${opt}</label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            }
+
+            questionEl.innerHTML = htmlContent;
+            container.appendChild(questionEl);
+
+            if (!formData[q.id] && (q.type === 'text' || q.type === 'tel')) {
+                setTimeout(() => {
+                    document.getElementById(q.id).focus();
+                }, 100);
+            }
+        }
+
+        function renderAllQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            // Mostrar todas las preguntas respondidas
+            questions.forEach((q, i) => {
+                if (formData[q.id] !== undefined || i < currentQuestion) {
+                    renderQuestion(i);
+                }
             });
 
-            const currentQuestion = document.querySelector(`[data-step="${step}"]`);
-            if (currentQuestion) {
-                currentQuestion.classList.add('active');
+            // Mostrar próxima pregunta si no está respondida
+            if (currentQuestion < questions.length && formData[questions[currentQuestion].id] === undefined) {
+                renderQuestion(currentQuestion);
             }
 
             updateProgress();
         }
 
-        function nextStep(step) {
-            const input = document.querySelector(`[data-step="${step}"] input[type="text"], [data-step="${step}"] input[type="tel"], [data-step="${step}"] select, [data-step="${step}"] textarea`);
+        function answerQuestion(index) {
+            const q = questions[index];
+            const input = document.getElementById(q.id);
 
-            if (!input || input.value.trim() === '') {
-                const errorDiv = document.querySelector(`[data-step="${step}"] .error-message`);
-                errorDiv.textContent = 'Por favor completa este campo';
+            if (!input.value.trim() && q.required) {
+                const errorDiv = document.querySelector(`[data-index="${index}"] .error-message`);
+                errorDiv.textContent = 'Este campo es requerido';
                 errorDiv.classList.add('show');
                 return;
             }
 
             // Validar teléfono
-            if (step === 2) {
+            if (q.validation === 'phone') {
                 const phoneRegex = /^[\d\s+().-]{9,}$/;
                 if (!phoneRegex.test(input.value)) {
-                    const errorDiv = document.querySelector(`[data-step="${step}"] .error-message`);
+                    const errorDiv = document.querySelector(`[data-index="${index}"] .error-message`);
                     errorDiv.textContent = 'Por favor ingresa un teléfono válido';
                     errorDiv.classList.add('show');
                     return;
                 }
             }
 
-            // Guardar dato
-            if (step === 1) formData.businessName = input.value;
-            if (step === 2) formData.whatsapp = input.value;
-            if (step === 3) formData.mainProblem = input.value;
-            if (step === 5) formData.hoursPerWeek = input.value;
-            if (step === 6) formData.budget = input.value;
+            formData[q.id] = input.value;
+            currentQuestion = index + 1;
 
-            currentStep = step + 1;
-            if (currentStep <= totalSteps) {
-                showStep(currentStep);
+            if (currentQuestion < questions.length) {
+                renderAllQuestions();
+                window.scrollBy({ top: 300, behavior: 'smooth' });
+            } else {
+                showFinishForm();
             }
         }
 
-        function prevStep() {
-            currentStep--;
-            if (currentStep >= 1) {
-                showStep(currentStep);
-            }
-        }
-
-        function selectRadio(element) {
-            document.querySelectorAll('.radio-option').forEach(opt => {
+        function selectRadio(element, index) {
+            const q = questions[index];
+            document.querySelectorAll(`[data-index="${index}"] .radio-option`).forEach(opt => {
                 opt.classList.remove('selected');
             });
             element.classList.add('selected');
-            element.querySelector('input[type="radio"]').checked = true;
+            formData[q.id] = element.querySelector('input').value;
             updateProgress();
         }
 
-        function updateProgress() {
-            const completed = Object.keys(formData).length;
-            const radioSelected = document.querySelector('input[name="contactPreference"]:checked') ? 1 : 0;
-            const total = totalSteps;
+        function editQuestion(index) {
+            const q = questions[index];
+            delete formData[q.id];
+            currentQuestion = index;
+            renderAllQuestions();
+            window.scrollBy({ top: 300, behavior: 'smooth' });
+        }
 
-            const percentage = Math.round(((completed + radioSelected) / total) * 100);
+        function showFinishForm() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Último paso</div>
+                    <h2 class="question-title">¿Todo está correcto?</h2>
+                    <button class="btn btn-submit" onclick="submitForm()" style="background: var(--success);">Enviar auditoría</button>
+                </div>
+            `;
+            window.scrollBy({ top: 400, behavior: 'smooth' });
+        }
+
+        function updateProgress() {
+            const completed = Object.keys(formData).filter(key => formData[key]).length;
+            const percentage = Math.round((completed / questions.length) * 100);
             document.getElementById('progressFill').style.width = percentage + '%';
             document.getElementById('progressPercent').textContent = percentage;
         }
 
         async function submitForm() {
-            // Validar radio
-            const selectedRadio = document.querySelector('input[name="contactPreference"]:checked');
-            if (!selectedRadio) {
-                alert('Por favor selecciona una opción de contacto');
-                return;
-            }
-
-            formData.contactPreference = selectedRadio.value;
-            formData.problemDetails = document.getElementById('problemDetails').value;
             formData.timestamp = new Date().toLocaleString('es-AR');
 
-            // Enviar a Google Sheets
             const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/d/1-h_BnBfG5Kno4bR6H8P4qL9R2S3T4U5V/usercontent/exec';
 
             try {
@@ -658,9 +698,8 @@
                     mode: 'no-cors'
                 });
 
-                // Mostrar pantalla de éxito
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('successScreen').classList.add('active');
+                document.getElementById('questionsContainer').style.display = 'none';
+                document.getElementById('successScreen').classList.add('show');
 
             } catch (error) {
                 console.error('Error:', error);
@@ -668,6 +707,8 @@
             }
         }
 
+        // Iniciar
+        renderAllQuestions();
         updateProgress();
     </script>
 </body>
