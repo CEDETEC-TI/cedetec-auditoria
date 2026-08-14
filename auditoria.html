@@ -639,6 +639,9 @@
                 document.getElementById('formContainer').style.display = 'none';
                 document.getElementById('successScreen').classList.add('active');
 
+                // Bajar el progreso suavemente
+                window.scrollBy({ top: 100, behavior: 'smooth' });
+
             } catch (error) {
                 console.error('Error:', error);
                 alert('Hubo un error. Por favor intenta de nuevo.');
