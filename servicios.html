@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - CEDETEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003157;
+            --accent: #004371;
+            --bg: #EFEFED;
+            --white: #ffffff;
+            --text: #003157;
+            --text-60: rgba(0, 49, 87, 0.60);
+            --text-40: rgba(0, 49, 87, 0.40);
+            --border: rgba(0, 49, 87, 0.10);
+            --card-bg: #f5f5f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text);
+            line-height: 1.75;
+            background: var(--white);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: var(--white);
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 80px 32px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-60);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .servicio-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .servicio-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .servicio-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .servicio-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .servicio-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .servicio-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .servicio-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);
+            transform: translateY(-8px);
+        }
+
+        .servicio-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .servicio-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .servicio-card p {
+            font-size: 15px;
+            color: var(--text-60);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .servicio-link {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .servicio-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .cta-section {
+            background: var(--bg);
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            color: var(--text-60);
+            margin-bottom: 32px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(0, 49, 87, 0.15);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);
+        }
+
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 32px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .servicios-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .servicio-card {
+                padding: 28px;
+            }
+
+            .cta-section {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <a href="/" class="logo">CEDETEC</a>
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="sobre-nosotros.html">Sobre nosotros</a>
+                <a href="/">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Nuestros Servicios</h1>
+            <p>Descubre cómo la tecnología puede transformar tu negocio. Cada servicio está diseñado para resolver un problema específico y ayudarte a crecer.</p>
+        </section>
+
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-icon">⚙️</div>
+                <h3>Automatización</h3>
+                <p>Ahorra horas automatizando procesos repetitivos. Libera tiempo de tu equipo para tareas que realmente importan.</p>
+                <a href="servicios/automatizacion.html" class="servicio-link">Descubre más →</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">📦</div>
+                <h3>Inventario</h3>
+                <p>Controla tu stock en tiempo real sin complicaciones. Sabe exactamente qué tienes, dónde está y cuándo reponer.</p>
+                <a href="servicios/inventario.html" class="servicio-link">Descubre más →</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">👥</div>
+                <h3>Clientes</h3>
+                <p>Gestiona relaciones y conoce mejor a quien te elige. Personaliza ofertas y mantén contacto efectivo.</p>
+                <a href="servicios/clientes.html" class="servicio-link">Descubre más →</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">📅</div>
+                <h3>Turnos</h3>
+                <p>Organiza citas y turnos de forma simple y clara. Tus clientes reservan, tú gestionas sin estrés.</p>
+                <a href="servicios/turnos.html" class="servicio-link">Descubre más →</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">📊</div>
+                <h3>Análisis</h3>
+                <p>Toma decisiones con datos reales de tu negocio. Ve patrones, tendencias y oportunidades que otros no ven.</p>
+                <a href="servicios/analisis.html" class="servicio-link">Descubre más →</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">🔗</div>
+                <h3>Integración</h3>
+                <p>Conecta tus herramientas para que trabajen juntas. Todo sincronizado, sin trabajo manual, sin duplicación.</p>
+                <a href="servicios/integracion.html" class="servicio-link">Descubre más →</a>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2>¿Cuál de estos servicios te interesa?</h2>
+            <p>Comienza con una auditoría digital gratis. Te mostraremos exactamente por dónde empezar.</p>
+            <a href="auditoria.html" class="cta-primary">Solicitar auditoría ahora</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 CEDETEC. Formosa, Argentina.</p>
+        </div>
+    </footer>
+</body>
+</html>
