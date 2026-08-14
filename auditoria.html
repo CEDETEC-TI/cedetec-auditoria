@@ -479,7 +479,14 @@
                 <!-- HORAS/SEMANA -->
                 <div class="form-group">
                     <label for="hoursPerWeek">¿Cuántas horas/semana pierdes? <span class="required">*</span></label>
-                    <input type="text" id="hoursPerWeek" name="hoursPerWeek" placeholder="Ej: 5 horas" required>
+                    <select id="hoursPerWeek" name="hoursPerWeek" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="Menos de 1 hora">Menos de 1 hora</option>
+                        <option value="1-2 horas">1-2 horas</option>
+                        <option value="2-5 horas">2-5 horas</option>
+                        <option value="5-10 horas">5-10 horas</option>
+                        <option value="Más de 10 horas">Más de 10 horas</option>
+                    </select>
                     <div class="error-message"></div>
                 </div>
 
