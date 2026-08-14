@@ -64,6 +64,11 @@
 
         .logo:hover {
             transform: scale(1.05);
+            color: var(--accent);
+        }
+
+        .logo:active {
+            transform: scale(0.98);
         }
 
         /* MENU HAMBURGUESA */
@@ -115,6 +120,10 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        nav a:active {
+            transform: scale(0.98);
         }
 
         .nav-contact {
@@ -292,8 +301,13 @@
 
         .step:hover {
             border-color: var(--accent);
-            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);
+            box-shadow: 0 12px 32px rgba(0, 49, 87, 0.15);
             transform: translateY(-8px);
+        }
+
+        .step:active {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 49, 87, 0.1);
         }
 
         .step-number {
@@ -353,8 +367,12 @@
 
         .qr-box:hover {
             border-color: var(--accent);
-            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.15);
+            box-shadow: 0 12px 32px rgba(0, 49, 87, 0.15);
             transform: scale(1.05);
+        }
+
+        .qr-box:active {
+            transform: scale(1.02);
         }
 
         .qr-box img {
@@ -443,8 +461,13 @@
 
         .servicio-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);
+            box-shadow: 0 12px 32px rgba(0, 49, 87, 0.15);
             transform: translateY(-8px);
+        }
+
+        .servicio-card:active {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 49, 87, 0.1);
         }
 
         .servicio-icon {
@@ -522,6 +545,10 @@
             transform: translateY(-2px);
         }
 
+        .footer-contact a:active {
+            transform: translateY(0);
+        }
+
         .footer-links {
             margin-top: 32px;
             padding-top: 32px;
@@ -566,31 +593,104 @@
         .cta-footer:hover {
             background: var(--white);
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .cta-footer:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* SCROLL ANIMATIONS */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* MOBILE MENU */
         @media (max-width: 768px) {
             header {
-                padding: 16px 24px;
+                padding: 14px 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            }
+
+            .header-wrapper {
+                gap: 16px;
+            }
+
+            .logo {
+                font-size: 24px;
             }
 
             .menu-toggle {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:active {
+                background: var(--bg);
             }
 
             nav {
                 display: none;
-                position: absolute;
-                top: 70px;
+                position: fixed;
+                top: 65px;
                 left: 0;
                 right: 0;
                 background: var(--white);
                 flex-direction: column;
                 gap: 0;
-                padding: 24px;
+                padding: 12px 0;
                 border-bottom: 1px solid var(--border);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+                z-index: 999;
+                max-height: calc(100vh - 65px);
+                overflow-y: auto;
+                animation: slideDown 0.3s ease;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
 
             nav.active {
@@ -598,8 +698,14 @@
             }
 
             nav a {
-                padding: 12px 0;
+                padding: 16px 20px;
                 border-bottom: 1px solid var(--border);
+                font-size: 16px;
+                transition: all 0.2s ease;
+            }
+
+            nav a:active {
+                background: var(--bg);
             }
 
             nav a:last-child {
@@ -609,84 +715,161 @@
             .nav-contact {
                 flex-direction: column;
                 width: 100%;
-                gap: 8px;
-                margin-top: 16px;
+                gap: 0;
+                margin-top: 8px;
+                border-top: 1px solid var(--border);
+                padding-top: 8px;
             }
 
             .nav-contact a {
                 width: 100%;
-                text-align: center;
-                padding: 12px;
+                text-align: left;
+                padding: 14px 20px;
+                border-bottom: 1px solid var(--border);
+                border-radius: 0;
+            }
+
+            .nav-contact a:last-child {
+                border-bottom: none;
             }
 
             main {
-                padding: 60px 24px;
+                padding: 40px 20px;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding: 40px 20px;
             }
 
             .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 12px;
+                font-size: clamp(1.8rem, 8vw, 2.4rem);
+                margin-bottom: 16px;
+                line-height: 1.2;
             }
 
             .tagline {
-                font-size: 16px;
-                margin-bottom: 32px;
+                font-size: 13px;
+                margin-bottom: 20px;
             }
 
             .description {
-                font-size: 15px;
-                margin-bottom: 32px;
+                font-size: 16px;
+                margin-bottom: 28px;
+                line-height: 1.8;
             }
 
             .cta-primary {
-                padding: 14px 40px;
+                padding: 16px 32px;
                 font-size: 15px;
+                width: 100%;
+                max-width: 100%;
+                border-radius: 8px;
+                touch-action: manipulation;
+            }
+
+            .cta-primary:active {
+                transform: scale(0.98);
             }
 
             .what-we-do {
-                margin: 60px -24px 0;
-                padding: 40px 24px;
+                margin: 0;
+                padding: 50px 20px;
+                min-height: auto;
+            }
+
+            .what-we-do h2 {
+                font-size: clamp(1.6rem, 6vw, 2rem);
+                margin-bottom: 32px;
             }
 
             .steps {
-                gap: 20px;
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .step {
-                padding: 24px;
+                padding: 24px 20px;
+                border-radius: 12px;
             }
 
             .step-number {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
+                width: 42px;
+                height: 42px;
+                line-height: 42px;
                 font-size: 18px;
+                margin-bottom: 12px;
             }
 
             .step h3 {
-                font-size: 15px;
+                font-size: 16px;
+                margin-bottom: 8px;
             }
 
             .step p {
-                font-size: 13px;
+                font-size: 14px;
+                line-height: 1.6;
             }
 
             .qr-section {
-                padding: 24px;
+                padding: 28px 20px;
+                margin: 28px 0;
+                border-radius: 12px;
+            }
+
+            .qr-section p {
+                font-size: 14px;
+            }
+
+            .qr-box {
+                margin: 16px 0;
+                padding: 16px;
             }
 
             .qr-box img {
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
+            }
+
+            .qr-text {
+                font-size: 13px;
             }
 
             .footer-links {
                 flex-direction: column;
-                gap: 12px;
+                gap: 8px;
+            }
+
+            .footer-links a {
+                font-size: 13px;
             }
 
             footer {
-                padding: 40px 24px;
+                padding: 36px 20px;
+            }
+
+            .cta-footer {
+                padding: 16px 28px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 100%;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+
+            .footer-contact {
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .footer-contact a {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .footer-bottom {
+                font-size: 12px;
+                margin-top: 24px;
             }
         }
 
