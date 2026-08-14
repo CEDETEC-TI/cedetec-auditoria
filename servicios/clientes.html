@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clientes - CEDETEC</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        :root {--primary: #003157; --accent: #004371; --bg: #EFEFED; --white: #ffffff; --text: #003157; --text-60: rgba(0, 49, 87, 0.60); --text-40: rgba(0, 49, 87, 0.40); --border: rgba(0, 49, 87, 0.10);}
+        body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; color: var(--text); line-height: 1.75; background: var(--white);}
+        html {scroll-behavior: smooth;}
+        header {background: var(--white); padding: 20px 32px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);}
+        .header-wrapper {max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;}
+        .logo {font-size: 28px; font-weight: 800; color: var(--primary); letter-spacing: -0.04em; text-decoration: none; transition: transform 0.2s;}
+        .logo:hover {transform: scale(1.05);}
+        nav {display: flex; gap: 32px; align-items: center;}
+        nav a {font-size: 14px; color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s;}
+        nav a:hover {color: var(--accent);}
+        .back-link {display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-60); text-decoration: none; margin-bottom: 32px; transition: color 0.2s;}
+        .back-link:hover {color: var(--primary);}
+        main {max-width: 1080px; margin: 0 auto; padding: 80px 32px;}
+        .hero {text-align: center; margin-bottom: 100px; animation: fadeInUp 0.8s ease-out;}
+        @keyframes fadeInUp {from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);}}
+        .hero h1 {font-size: clamp(2.4rem, 6vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 16px; color: var(--primary);}
+        .hero p {font-size: 18px; color: var(--text-60); max-width: 700px; margin: 0 auto 48px; line-height: 1.9;}
+        .cta-primary {display: inline-block; background: var(--primary); color: var(--white); padding: 16px 48px; border-radius: 8px; font-weight: 700; font-size: 16px; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 16px rgba(0, 49, 87, 0.15);}
+        .cta-primary:hover {background: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);}
+        section {margin-bottom: 100px; animation: fadeInUp 0.8s ease-out;}
+        section h2 {font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--primary);}
+        section p {font-size: 16px; color: var(--text-60); line-height: 2; margin-bottom: 24px;}
+        .benefits-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 40px;}
+        .benefit {background: var(--bg); padding: 28px; border-radius: 12px; border-left: 4px solid var(--primary); transition: all 0.3s;}
+        .benefit:hover {box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1); transform: translateY(-4px);}
+        .benefit h3 {font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 8px;}
+        .benefit p {font-size: 14px; color: var(--text-60); margin: 0;}
+        .cases-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px;}
+        .case {background: var(--white); border: 2px solid var(--border); padding: 28px; border-radius: 12px; transition: all 0.3s;}
+        .case:hover {border-color: var(--primary); box-shadow: 0 8px 24px rgba(0, 49, 87, 0.1);}
+        .case-icon {font-size: 32px; margin-bottom: 12px;}
+        .case h3 {font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 8px;}
+        .case p {font-size: 14px; color: var(--text-60); margin: 0;}
+        .cta-section {background: var(--bg); padding: 60px 40px; border-radius: 12px; text-align: center;}
+        .cta-section h2 {margin-bottom: 16px;}
+        .cta-section p {font-size: 16px; margin-bottom: 32px;}
+        footer {background: var(--primary); color: var(--white); padding: 40px 32px; text-align: center; margin-top: 80px;}
+        .footer-content {max-width: 1080px; margin: 0 auto;}
+        .footer-text {font-size: 14px; opacity: 0.9;}
+        @media (max-width: 768px) {main {padding: 60px 24px;} .hero h1 {font-size: 2rem;} section h2 {font-size: 22px;}}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <a href="../index.html" class="logo">CEDETEC</a>
+            <nav><a href="../index.html">Volver</a></nav>
+        </div>
+    </header>
+
+    <main>
+        <a href="../index.html" class="back-link">← Volver a servicios</a>
+
+        <section class="hero">
+            <h1>Gestión de Clientes</h1>
+            <p>Imagina conocer cada cliente mejor que nadie. Entender qué necesitan, cuándo compran y cómo fidelizarlos.</p>
+            <a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20Gesti%C3%B3n%20de%20Clientes%20para%20mi%20negocio.%20%C2%BFPodemos%20hacer%20una%20consulta%3F" class="cta-primary" target="_blank">Contactar por WhatsApp</a>
+        </section>
+
+        <section>
+            <h2>¿Qué es gestión de clientes?</h2>
+            <p>Es un sistema que te permite organizar toda la información de tus clientes en un lugar. Desde sus datos, historial de compras, preferencias y contacto.</p>
+            <p>En lugar de perder clientes valiosos o no recordar qué necesita cada uno, tienes una relación organizada y personalizada con cada persona que te elige.</p>
+        </section>
+
+        <section>
+            <h2>Beneficios principales</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <h3>💝 Mayor lealtad</h3>
+                    <p>Clientes satisfechos que vuelven una y otra vez.</p>
+                </div>
+                <div class="benefit">
+                    <h3>📈 Más ventas</h3>
+                    <p>Identifica oportunidades de upsell y cross-sell.</p>
+                </div>
+                <div class="benefit">
+                    <h3>🎯 Personalización</h3>
+                    <p>Ofrece lo que cada cliente realmente necesita.</p>
+                </div>
+                <div class="benefit">
+                    <h3>⏰ Menos tiempo</h3>
+                    <p>Automatiza seguimientos y recordatorios.</p>
+                </div>
+                <div class="benefit">
+                    <h3>📊 Datos valiosos</h3>
+                    <p>Entiende patrones de compra y comportamiento.</p>
+                </div>
+                <div class="benefit">
+                    <h3>🌟 Mejor servicio</h3>
+                    <p>Atiende como si conocieran desde siempre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Dónde funciona mejor</h2>
+            <div class="cases-grid">
+                <div class="case">
+                    <div class="case-icon">🛍️</div>
+                    <h3>Retail</h3>
+                    <p>Conoce preferencias de compra y frecuencia de clientes.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">💼</div>
+                    <h3>B2B</h3>
+                    <p>Gestiona relaciones comerciales complejas y múltiples contactos.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">✨</div>
+                    <h3>Servicios</h3>
+                    <p>Personaliza ofertas y mantén contacto regular.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">📞</div>
+                    <h3>Telemarketing</h3>
+                    <p>Historial completo de interacciones y seguimientos.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">🎓</div>
+                    <h3>Educación</h3>
+                    <p>Seguimiento de estudiantes y relación con padres.</p>
+                </div>
+                <div class="case">
+                    <div class="case-icon">🏥</div>
+                    <h3>Salud</h3>
+                    <p>Historial de pacientes y recordatorio de citas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>¿Listo para conocer mejor a tus clientes?</h2>
+            <p>Descubre qué procesos de tu negocio podrían beneficiarse de la gestión de clientes. La auditoría digital gratis te mostrará exactamente por dónde empezar.</p>
+            <a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20Gesti%C3%B3n%20de%20Clientes%20para%20mi%20negocio.%20%C2%BFPodemos%20hacer%20una%20consulta%3F" class="cta-primary" target="_blank">Contactar por WhatsApp</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 CEDETEC. Formosa, Argentina.</p>
+        </div>
+    </footer>
+</body>
+</html>
