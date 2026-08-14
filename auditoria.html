@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEDETEC - Porque la tecnología debe ser simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003157;
+            --accent: #004371;
+            --bg: #EFEFED;
+            --white: #ffffff;
+            --text: #003157;
+            --text-60: rgba(0, 49, 87, 0.60);
+            --text-40: rgba(0, 49, 87, 0.40);
+            --border: rgba(0, 49, 87, 0.10);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text);
+            line-height: 1.75;
+            background: var(--white);
+        }
+
+        /* HEADER / NAV */
+        header {
+            background: var(--white);
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .nav-contact {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-contact a {
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .nav-contact a:first-child {
+            color: var(--primary);
+        }
+
+        .nav-contact a:last-child {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-contact a:last-child:hover {
+            background: var(--accent);
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 80px 32px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 48px;
+            letter-spacing: 0.02em;
+        }
+
+        .description {
+            font-size: 16px;
+            color: var(--text-60);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.9;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* WHAT WE DO */
+        .what-we-do {
+            background: var(--bg);
+            padding: 60px 32px;
+            margin: 80px -32px 0;
+        }
+
+        .what-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .what-we-do h2 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            letter-spacing: -0.025em;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-60);
+            line-height: 1.8;
+        }
+
+        /* QR SECTION */
+        .qr-section {
+            text-align: center;
+            padding: 40px 0;
+            background: var(--white);
+            margin: 40px 0;
+        }
+
+        .qr-box {
+            display: inline-block;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            margin: 20px 0;
+        }
+
+        .qr-box img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .qr-text {
+            font-size: 14px;
+            color: var(--text-60);
+            margin-top: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 48px 32px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 32px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav {
+                gap: 16px;
+                font-size: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .nav-contact {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .nav-contact a {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            main {
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+
+            .what-we-do {
+                margin: 60px -24px 0;
+                padding: 40px 24px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-wrapper">
+            <a href="/" class="logo">CEDETEC</a>
+            <nav>
+                <a href="#about">Sobre nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#contacto">Contacto</a>
+                <div class="nav-contact">
+                    <a href="tel:+543704700739">📞 3704700739</a>
+                    <a href="https://wa.me/543704700739" target="_blank">💬 WhatsApp</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <section class="hero">
+            <h1>CEDETEC</h1>
+            <p class="tagline">Porque la tecnología debe ser simple</p>
+
+            <p class="description">
+                Identificamos tus problemas en tu negocio, conectamos soluciones tecnológicas y te enseñamos a usarlas.
+            </p>
+
+            <a href="https://cedetec-ti.github.io/cedetec-auditoria/auditoria.html" class="cta-primary">
+                Auditoría digital gratis
+            </a>
+        </section>
+    </main>
+
+    <!-- WHAT WE DO -->
+    <section class="what-we-do">
+        <div class="what-wrapper">
+            <h2>Cómo funciona</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Identificamos</h3>
+                    <p>Vemos qué no funciona en tu negocio. Hablamos, observamos, entendemos.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Conectamos</h3>
+                    <p>Encontramos la tecnología exacta que resuelve tu problema.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Enseñamos</h3>
+                    <p>Te mostramos cómo funciona. Hasta que entiendas y puedas usarlo.</p>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <p style="margin-bottom: 16px;">Comienza con una auditoría digital gratis</p>
+                <div class="qr-box">
+                    <img src="qr-codigo.png" alt="QR Auditoría Digital">
+                </div>
+                <p class="qr-text">Escanea con tu teléfono o <a href="https://cedetec-ti.github.io/cedetec-auditoria/auditoria.html" style="color: var(--accent); text-decoration: underline;">abre el formulario</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <p style="font-weight: 700; font-size: 18px; margin-bottom: 16px;">CEDETEC</p>
+
+            <div class="footer-contact">
+                <a href="tel:+543704700739">📞 3704700739</a>
+                <a href="https://wa.me/543704700739">💬 WhatsApp</a>
+                <a href="mailto:tecnobas01@gmail.com">✉️ Email</a>
+            </div>
+
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/guillermo-bassi/" target="_blank">LinkedIn</a>
+                <a href="https://www.instagram.com/cedetec.comm/" target="_blank">Instagram</a>
+                <a href="#about">Sobre nosotros</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 CEDETEC. Formosa, Argentina.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
