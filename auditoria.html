@@ -640,7 +640,9 @@
                 document.getElementById('successScreen').classList.add('active');
 
                 // Bajar el progreso suavemente
-                window.scrollBy({ top: 100, behavior: 'smooth' });
+                setTimeout(() => {
+                    window.scrollBy({ top: 250, behavior: 'smooth' });
+                }, 200);
 
             } catch (error) {
                 console.error('Error:', error);
