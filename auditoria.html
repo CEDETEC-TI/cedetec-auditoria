@@ -458,8 +458,22 @@
                 <!-- PROBLEMA PRINCIPAL -->
                 <div class="form-group">
                     <label for="mainProblem">¿Cuál es tu problema principal? <span class="required">*</span></label>
-                    <textarea id="mainProblem" name="mainProblem" placeholder="Ej: Pierdo 5 horas diarias en inventario manual" required></textarea>
+                    <select id="mainProblem" name="mainProblem" required>
+                        <option value="">Selecciona tu problema</option>
+                        <option value="Pierdo tiempo en inventario manual">Pierdo tiempo en inventario manual</option>
+                        <option value="Gestión de turnos/citas desorganizada">Gestión de turnos/citas desorganizada</option>
+                        <option value="No tengo control de mis gastos/ingresos">No tengo control de mis gastos/ingresos</option>
+                        <option value="Comunicación desorganizada con clientes">Comunicación desorganizada con clientes</option>
+                        <option value="Duplico trabajo entre distintos sistemas">Duplico trabajo entre distintos sistemas</option>
+                        <option value="Otro problema">Otro (cuéntame en el siguiente campo)</option>
+                    </select>
                     <div class="error-message"></div>
+                </div>
+
+                <!-- DETALLES ADICIONALES -->
+                <div class="form-group">
+                    <label for="problemDetails">Cuéntanos más sobre tu situación (opcional)</label>
+                    <textarea id="problemDetails" name="problemDetails" placeholder="Ej: Pierdo 5 horas diarias en inventario manual, además tenemos staff en diferentes sucursales"></textarea>
                 </div>
 
                 <!-- HORAS/SEMANA -->
@@ -489,15 +503,15 @@
                     <div class="radio-group" id="contactPreference">
                         <div class="radio-option">
                             <input type="radio" id="phone" name="contactPreference" value="Teléfono" required>
-                            <label for="phone">📞 Por teléfono</label>
+                            <label for="phone">Por teléfono</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="audit" name="contactPreference" value="Auditoría personal en mi local" required>
-                            <label for="audit">🏪 Auditoría personal en mi local</label>
+                            <label for="audit">Auditoría personal en mi local</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="both" name="contactPreference" value="Ambos" required>
-                            <label for="both">🤝 Ambos</label>
+                            <label for="both">Ambos</label>
                         </div>
                     </div>
                 </div>
@@ -628,6 +642,7 @@
                 businessName: document.getElementById('businessName').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 mainProblem: document.getElementById('mainProblem').value,
+                problemDetails: document.getElementById('problemDetails').value,
                 hoursPerWeek: document.getElementById('hoursPerWeek').value,
                 budget: document.getElementById('budget').value,
                 contactPreference: document.querySelector('input[name="contactPreference"]:checked').value
