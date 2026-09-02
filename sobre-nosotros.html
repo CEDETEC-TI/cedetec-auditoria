@@ -242,21 +242,33 @@
         }
 
         footer {
-            background: var(--primary);
-            color: var(--white);
+            background: transparent;
             padding: 40px 32px;
-            text-align: center;
             margin-top: 80px;
+            border-top: 1px solid var(--border);
         }
 
-        .footer-content {
+        .footer-wrapper {
             max-width: 1080px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+            flex-wrap: wrap;
         }
 
-        .footer-text {
-            font-size: 14px;
-            opacity: 0.9;
+        .footer-link {
+            color: var(--text-60);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
         }
 
         .value-card:active {
