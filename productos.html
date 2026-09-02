@@ -234,6 +234,109 @@
         .footer-link:hover {
             color: var(--primary);
         }
+
+
+        @media (max-width: 768px) {
+            header {
+                padding: 14px 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            }
+
+            .header-wrapper {
+                gap: 16px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:active {
+                background: var(--bg);
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                gap: 0;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+                z-index: 999;
+                max-height: calc(100vh - 65px);
+                overflow-y: auto;
+                animation: slideDown 0.3s ease;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 16px 20px;
+                border-bottom: 1px solid var(--border);
+                font-size: 16px;
+                transition: all 0.2s ease;
+            }
+
+            nav a:active {
+                background: var(--bg);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-contact {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-top: 8px;
+                border-top: 1px solid var(--border);
+                padding-top: 8px;
+            }
+
+            .nav-contact a {
+                width: 100%;
+                text-align: left;
+                padding: 14px 20px;
+                border-bottom: 1px solid var(--border);
+                border-radius: 0;
+            }
+
+            .nav-contact a:last-child {
+                border-bottom: none;
+            }
+
+            main {
+                padding: 40px 20px;
+            }
+        }
     </style>
 </head>
 <body>
