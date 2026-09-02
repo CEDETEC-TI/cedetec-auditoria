@@ -75,20 +75,32 @@
             transform: scale(0.98);
         }
 
-        /* MENU HAMBURGUESA */
+                /* MENU HAMBURGUESA */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
             cursor: pointer;
-            color: var(--primary);
-            padding: 8px;
-            transition: transform 0.2s;
+            padding: 8px 4px;
+            transition: all 0.3s;
+            width: 32px;
+            height: 32px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
         }
 
-        .menu-toggle:hover {
-            transform: rotate(90deg);
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .menu-toggle:hover span {
+            background: var(--accent);
         }
 
         nav {
@@ -490,7 +502,11 @@
     <header>
         <div class="header-wrapper">
             <a href="index.html" class="logo">CEDETEC</a>
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav id="menu">
                 <a href="sobre-nosotros.html">Sobre nosotros</a>
                 <a href="index.html#servicios">Servicios</a>
