@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Web - CEDETEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003157;
+            --accent: #004371;
+            --bg: #EFEFED;
+            --white: #ffffff;
+            --text: #003157;
+            --text-60: rgba(0, 49, 87, 0.60);
+            --text-40: rgba(0, 49, 87, 0.40);
+            --border: rgba(0, 49, 87, 0.10);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text);
+            line-height: 1.75;
+            background: var(--white);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: var(--white);
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        header.hide {
+            transform: translateY(-100%);
+        }
+
+        .header-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+        }
+
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px 32px;
+            padding-top: 130px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 32px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-60);
+            margin-bottom: 48px;
+            max-width: 700px;
+        }
+
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        .section p {
+            font-size: 16px;
+            color: var(--text-60);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .feature {
+            background: var(--bg);
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--text-60);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 48px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 24px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 49, 87, 0.25);
+        }
+
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 32px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <a href="index.html" class="logo">CEDETEC</a>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="sobre-nosotros.html">Sobre nosotros</a>
+                <a href="index.html#contacto" class="nav-cta">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">← Volver a Servicios</a>
+
+        <h1>Desarrollo Web</h1>
+        <p class="subtitle">Webs profesionales que generan conversiones. Diseño responsivo, rápidas y optimizadas para resultados.</p>
+
+        <section class="section">
+            <h2>¿Por qué tu negocio necesita una web?</h2>
+            <p>El 87% de los clientes potenciales busca organizaciones en Google. Si no apareces, pierden oportunidades.</p>
+            <p>Una web profesional es tu vendedor 24/7 que trabaja mientras duermes.</p>
+        </section>
+
+        <section class="section">
+            <h2>¿Qué incluye?</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Diseño Personalizado</h3>
+                    <p>Diseño único para tu negocio, reflejando tu identidad y valores.</p>
+                </div>
+                <div class="feature">
+                    <h3>Responsivo (Mobile)</h3>
+                    <p>Se ve perfecto en teléfono, tablet y desktop. 100% adaptable.</p>
+                </div>
+                <div class="feature">
+                    <h3>SEO Optimizado</h3>
+                    <p>Apareces en Google cuando buscan tu tipo de negocio.</p>
+                </div>
+                <div class="feature">
+                    <h3>Rápida y Segura</h3>
+                    <p>Carga en menos de 2 segundos. Certificado SSL incluido.</p>
+                </div>
+                <div class="feature">
+                    <h3>Contacto Integrado</h3>
+                    <p>Formularios, WhatsApp, email. Todo en un lugar.</p>
+                </div>
+                <div class="feature">
+                    <h3>Soporte Incluido</h3>
+                    <p>Actualizaciones y mantenimiento por 3 meses. Sin costo extra.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Proceso</h2>
+            <p><strong>1. Entrevista</strong> — Entendemos tu negocio, competencia y objetivos.</p>
+            <p><strong>2. Diseño</strong> — Creamos la estructura visual y contenido.</p>
+            <p><strong>3. Desarrollo</strong> — Codificamos, testeamos, optimizamos.</p>
+            <p><strong>4. Deploy</strong> — Tu web está live. ¡A convertir clientes!</p>
+        </section>
+
+        <a href="https://wa.me/543704700739?text=Quiero%20una%20web%20para%20mi%20negocio" class="cta-button">
+            Solicitar Presupuesto por WhatsApp
+        </a>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p style="font-weight: 700; font-size: 18px; margin-bottom: 24px;">CEDETEC</p>
+            <div class="footer-links">
+                <a href="tel:+543704700739">📞 3704700739</a>
+                <a href="https://wa.me/543704700739">💬 WhatsApp</a>
+                <a href="https://www.instagram.com/cedetec.comm/" target="_blank">Instagram</a>
+            </div>
+            <p style="margin-top: 24px; font-size: 14px; opacity: 0.8;">© 2026 CEDETEC. Formosa, Argentina.</p>
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 30) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+    </script>
+</body>
+</html>

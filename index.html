@@ -39,10 +39,16 @@
             background: var(--white);
             padding: 20px 32px;
             border-bottom: 1px solid var(--border);
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        header.hide {
+            transform: translateY(-100%);
         }
 
         .header-wrapper {
@@ -158,6 +164,7 @@
             max-width: 100%;
             margin: 0;
             padding: 0;
+            padding-top: 70px;
         }
 
         .hero {
@@ -169,7 +176,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 60px 32px;
+            padding: 80px 32px;
         }
 
         @keyframes fadeInUp {
@@ -250,10 +257,10 @@
 
         /* WHAT WE DO */
         .what-we-do {
-            background: var(--bg);
-            padding: 80px 32px;
+            background: var(--white);
+            padding: 160px 32px 200px;
             margin: 0;
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -261,34 +268,50 @@
         }
 
         .what-wrapper {
-            max-width: 1080px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
         }
 
         .what-we-do h2 {
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
-            font-weight: 700;
-            margin-bottom: 40px;
-            letter-spacing: -0.025em;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 60px;
+            letter-spacing: -0.02em;
             animation: fadeInUp 0.8s ease-out;
+            text-align: center;
         }
 
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         .step {
             background: var(--white);
-            padding: 32px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             animation: fadeInUp 0.8s ease-out;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .step:nth-child(2) {
@@ -300,47 +323,35 @@
         }
 
         .step:hover {
-            border-color: var(--accent);
-            box-shadow: 0 12px 32px rgba(0, 49, 87, 0.15);
-            transform: translateY(-8px);
+            border-color: #e8e8e8;
+            box-shadow: 0 20px 40px rgba(0, 49, 87, 0.08);
+            transform: translateY(-12px);
+        }
+
+        .step:hover::before {
+            transform: scaleY(1);
         }
 
         .step:active {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 49, 87, 0.1);
+            transform: translateY(-6px);
         }
 
         .step-number {
-            display: inline-block;
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 48px;
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 16px;
-            transition: all 0.3s;
-        }
-
-        .step:hover .step-number {
-            background: var(--accent);
-            transform: scale(1.1);
+            display: none;
         }
 
         .step h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
             color: var(--primary);
+            letter-spacing: -0.01em;
         }
 
         .step p {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-60);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         /* QR SECTION */
@@ -395,6 +406,22 @@
 
         .qr-text a:hover {
             color: var(--primary);
+        }
+
+        /* SERVICE CARDS INTERACTIVAS */
+        .service-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 12px;
+            transition: all 0.2s;
+        }
+
+        .service-link:hover {
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
         /* SERVICIOS */
@@ -507,60 +534,80 @@
         footer {
             background: var(--primary);
             color: var(--white);
-            padding: 40px 32px;
-            text-align: center;
+            padding: 8px 32px 6px;
             margin-top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .footer-content {
-            max-width: 1080px;
-            width: 100%;
+            max-width: 1100px;
             margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+        }
+
+        .footer-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+        }
+
+        .footer-main p:first-child {
+            font-weight: 800;
+            font-size: 14px;
+            margin-bottom: 3px;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-footer {
+            display: inline-block;
+            background: var(--white) !important;
+            color: var(--primary) !important;
+            padding: 8px 32px !important;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            margin-bottom: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-footer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
 
         .footer-contact {
             display: flex;
-            gap: 24px;
+            gap: 8px;
             justify-content: center;
-            margin: 16px 0;
-            flex-wrap: wrap;
+            margin-bottom: 2px;
+            font-size: 12px;
         }
 
         .footer-contact a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-            padding: 8px 12px;
-            border-radius: 4px;
+            transition: opacity 0.2s;
         }
 
         .footer-contact a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .footer-contact a:active {
-            transform: translateY(0);
+            opacity: 0.8;
         }
 
         .footer-links {
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
-            gap: 32px;
+            gap: 12px;
             justify-content: center;
-            flex-wrap: wrap;
+            margin-bottom: 2px;
         }
 
         .footer-links a {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.2s;
@@ -570,10 +617,37 @@
             color: var(--white);
         }
 
-        .footer-bottom {
+        .footer-qr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            min-width: 120px;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .footer-qr p {
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 32px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .footer-qr img {
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+        }
+
+        .footer-bottom {
+            flex-basis: 100%;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 2px;
+            padding-top: 2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .cta-footer {
@@ -803,7 +877,7 @@
 
             .step h3 {
                 font-size: 16px;
-                margin-bottom: 8px;
+                margin-bottom: 4px;
             }
 
             .step p {
@@ -898,12 +972,12 @@
     <!-- HEADER -->
     <header>
         <div class="header-wrapper">
-            <a href="./" class="logo">CEDETEC</a>
+            <a href="index.html" class="logo">CEDETEC</a>
             <button class="menu-toggle" id="menuToggle">☰</button>
             <nav id="menu">
                 <a href="sobre-nosotros.html">Sobre nosotros</a>
-                <a href="servicios.html">Servicios</a>
-                <a href="#contacto">Contacto</a>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#contacto">Contacto</a>
                 <div class="nav-contact">
                     <a href="tel:+543704700739">📞 3704700739</a>
                     <a href="https://wa.me/543704700739" target="_blank">💬 WhatsApp</a>
@@ -916,76 +990,82 @@
     <main>
         <section class="hero">
             <h1>CEDETEC</h1>
-
-            <p class="description">
-                Descubre cómo la tecnología puede ayudar a tu negocio.
-            </p>
+            <p class="description">Descubre cómo la tecnología puede ayudar a tu negocio.</p>
         </section>
     </main>
 
-    <!-- WHAT WE DO -->
-    <section class="what-we-do">
+    <!-- SERVICIOS -->
+    <section class="what-we-do" id="servicios">
         <div class="what-wrapper">
-            <h2>Cómo funciona</h2>
+            <h2>Nuestros Servicios</h2>
 
             <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
+                <div class="step service-card" data-service="web">
                     <h3>Desarrollo Web</h3>
-                    <p>Webs profesionales que traen clientes. Diseño responsivo, rápidas y optimizadas para vender.</p>
+                    <p class="basic-info">Webs profesionales que generan conversiones. Diseño responsivo, rápidas y optimizadas para resultados.</p>
+                    <div class="expanded-info" style="display:none;">
+                        <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(0, 49, 87, 0.1);">
+                        <p style="font-size: 14px; color: rgba(0, 49, 87, 0.6); margin-bottom: 12px;"><strong>¿Qué incluye?</strong></p>
+                        <ul style="font-size: 13px; color: rgba(0, 49, 87, 0.6); margin-left: 20px; margin-bottom: 16px;">
+                            <li>Diseño personalizado y responsivo</li>
+                            <li>Optimización para Google (SEO)</li>
+                            <li>Velocidad y seguridad garantizadas</li>
+                            <li>Formularios y contacto integrados</li>
+                        </ul>
+                        <a href="desarrollo-web.html" class="service-link">Ver detalles completos →</a>
+                    </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">2</div>
+                <div class="step service-card" data-service="sistemas">
                     <h3>Desarrollo de Sistemas</h3>
-                    <p>Sistemas personalizados para tu negocio. Gestión, automatización, lo que necesites.</p>
+                    <p class="basic-info">Sistemas personalizados para tu organización. Gestión, automatización, escalabilidad.</p>
+                    <div class="expanded-info" style="display:none;">
+                        <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(0, 49, 87, 0.1);">
+                        <p style="font-size: 14px; color: rgba(0, 49, 87, 0.6); margin-bottom: 12px;"><strong>¿Qué incluye?</strong></p>
+                        <ul style="font-size: 13px; color: rgba(0, 49, 87, 0.6); margin-left: 20px; margin-bottom: 16px;">
+                            <li>Sistema de inventario y stock</li>
+                            <li>Gestión de turnos y citas</li>
+                            <li>Panel de control personalizado</li>
+                            <li>Reportes y análisis automáticos</li>
+                        </ul>
+                        <a href="desarrollo-sistemas.html" class="service-link">Ver detalles completos →</a>
+                    </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">3</div>
+                <div class="step service-card" data-service="productos">
                     <h3>Productos Digitales</h3>
-                    <p>Herramientas listas para usar. Auditorías, dashboards, automatizaciones. Soluciones completas.</p>
+                    <p class="basic-info">Herramientas listas para usar. Auditorías, dashboards, automatizaciones. Soluciones completas.</p>
+                    <div class="expanded-info" style="display:none;">
+                        <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(0, 49, 87, 0.1);">
+                        <p style="font-size: 14px; color: rgba(0, 49, 87, 0.6); margin-bottom: 12px;"><strong>¿Qué incluye?</strong></p>
+                        <ul style="font-size: 13px; color: rgba(0, 49, 87, 0.6); margin-left: 20px; margin-bottom: 16px;">
+                            <li>Auditoría digital completa</li>
+                            <li>Dashboard de análisis</li>
+                            <li>Automatizaciones con n8n</li>
+                            <li>Integración con tus herramientas</li>
+                        </ul>
+                        <a href="productos.html" class="service-link">Ver detalles completos →</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="qr-section">
-                <p style="margin-bottom: 16px; font-weight: 600;">Comienza con una auditoría digital gratis</p>
-                <div class="qr-box">
-                    <img src="qr-codigo.png" alt="QR Auditoría Digital">
-                </div>
-                <p class="qr-text">Escanea con tu teléfono o <a href="auditoria.html">abre el formulario</a></p>
-            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="contacto">
-        <div class="footer-content">
-            <p style="font-weight: 700; font-size: 18px; margin-bottom: 24px;">CEDETEC</p>
-
-            <a href="auditoria.html" class="cta-footer">
-                Solicitar auditoría digital gratis
-            </a>
-
+        <div class="footer-wrapper">
+            <a href="auditoria.html" class="footer-cta">Solicitar auditoría digital gratis</a>
             <div class="footer-contact">
                 <a href="tel:+543704700739">📞 3704700739</a>
                 <a href="https://wa.me/543704700739">💬 WhatsApp</a>
-                <a href="mailto:tecnobas01@gmail.com">✉️ Email</a>
-            </div>
-
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/guillermo-bassi/" target="_blank">LinkedIn</a>
                 <a href="https://www.instagram.com/cedetec.comm/" target="_blank">Instagram</a>
-                <a href="sobre-nosotros.html">Sobre nosotros</a>
             </div>
-
-            <div class="footer-bottom">
-                <p>© 2026 CEDETEC. Formosa, Argentina.</p>
-            </div>
+            <p class="footer-copyright">© 2026 CEDETEC. Formosa, Argentina.</p>
         </div>
     </footer>
 
-    <!-- MENU TOGGLE SCRIPT -->
+    <!-- MENU TOGGLE & SERVICES SCRIPT -->
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const menu = document.getElementById('menu');
@@ -1001,6 +1081,43 @@
                 menu.classList.remove('active');
                 menuToggle.textContent = '☰';
             });
+        });
+
+        // SERVICIOS - Expandir/Contraer tarjetas
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.service-link')) {
+                    return; // Permitir click en link
+                }
+                const expandedInfo = this.querySelector('.expanded-info');
+                const isExpanded = expandedInfo.style.display !== 'none';
+
+                // Cerrar todas las demás
+                document.querySelectorAll('.expanded-info').forEach(info => {
+                    info.style.display = 'none';
+                });
+
+                // Abrir/cerrar esta
+                expandedInfo.style.display = isExpanded ? 'none' : 'block';
+            });
+
+            // Cambiar cursor a pointer
+            card.style.cursor = 'pointer';
+        });
+
+        // HIDE ON SCROLL - Header desaparece al scrollear hacia abajo
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 30) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
     </script>
 </body>
