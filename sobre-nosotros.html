@@ -37,10 +37,16 @@
             background: var(--white);
             padding: 20px 32px;
             border-bottom: 1px solid var(--border);
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        header.hide {
+            transform: translateY(-100%);
         }
 
         .header-wrapper {
@@ -69,6 +75,22 @@
             transform: scale(0.98);
         }
 
+        /* MENU HAMBURGUESA */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 8px;
+            transition: transform 0.2s;
+        }
+
+        .menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+
         nav {
             display: flex;
             gap: 32px;
@@ -81,10 +103,58 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
+            position: relative;
+            padding: 8px 0;
         }
 
         nav a:hover {
             color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.2s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:active {
+            transform: scale(0.98);
+        }
+
+        .nav-contact {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-contact a {
+            font-size: 13px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-contact a:first-child {
+            color: var(--primary);
+        }
+
+        .nav-contact a:last-child {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-contact a:last-child:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
         }
 
         main {
