@@ -365,6 +365,7 @@
         @media (max-width: 768px) {
             header {
                 padding: 14px 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
             }
 
             .header-wrapper {
@@ -375,19 +376,87 @@
                 font-size: 24px;
             }
 
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:active {
+                background: var(--bg);
+            }
+
             nav {
+                display: none;
+                position: fixed;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: var(--white);
                 flex-direction: column;
                 gap: 0;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+                z-index: 999;
+                max-height: calc(100vh - 65px);
+                overflow-y: auto;
+                animation: slideDown 0.3s ease;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            nav.active {
+                display: flex;
             }
 
             nav a {
                 padding: 16px 20px;
                 border-bottom: 1px solid var(--border);
                 font-size: 16px;
+                transition: all 0.2s ease;
             }
 
             nav a:active {
                 background: var(--bg);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-contact {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-top: 8px;
+                border-top: 1px solid var(--border);
+                padding-top: 8px;
+            }
+
+            .nav-contact a {
+                width: 100%;
+                text-align: left;
+                padding: 14px 20px;
+                border-bottom: 1px solid var(--border);
+                border-radius: 0;
+            }
+
+            .nav-contact a:last-child {
+                border-bottom: none;
             }
 
             main {
@@ -395,105 +464,158 @@
             }
 
             .hero {
-                margin-bottom: 40px;
+                min-height: 85vh;
+                padding: 40px 20px;
             }
 
             .hero h1 {
                 font-size: clamp(1.8rem, 8vw, 2.4rem);
-                margin-bottom: 12px;
-            }
-
-            .hero p {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            section {
-                margin-bottom: 50px;
-            }
-
-            section h2 {
-                font-size: clamp(1.4rem, 6vw, 2rem);
-                margin-bottom: 24px;
-            }
-
-            section p {
-                font-size: 15px;
-                line-height: 1.8;
-            }
-
-            .founder-section {
-                padding: 28px 20px;
-                margin: 40px 0;
-            }
-
-            .founder-name {
-                font-size: 20px;
-                margin-bottom: 6px;
-            }
-
-            .founder-role {
-                font-size: 12px;
                 margin-bottom: 16px;
+                line-height: 1.2;
             }
 
-            .founder-content p {
-                font-size: 15px;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                margin-top: 24px;
-            }
-
-            .value-card {
-                padding: 20px;
-                border-radius: 12px;
-            }
-
-            .value-icon {
-                font-size: 32px;
-                margin-bottom: 12px;
-            }
-
-            .value-card h3 {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-
-            .value-card p {
-                font-size: 14px;
-            }
-
-            .cta-section {
-                padding: 28px 20px;
-                margin-top: 40px;
-            }
-
-            .cta-section h2 {
-                font-size: clamp(1.4rem, 6vw, 1.8rem);
-                margin-bottom: 12px;
-            }
-
-            .cta-section p {
-                font-size: 14px;
+            .tagline {
+                font-size: 13px;
                 margin-bottom: 20px;
+            }
+
+            .description {
+                font-size: 16px;
+                margin-bottom: 28px;
+                line-height: 1.8;
             }
 
             .cta-primary {
                 padding: 16px 32px;
-                font-size: 14px;
+                font-size: 15px;
                 width: 100%;
                 max-width: 100%;
+                border-radius: 8px;
+                touch-action: manipulation;
+            }
+
+            .cta-primary:active {
+                transform: scale(0.98);
+            }
+
+            .what-we-do {
+                margin: 0;
+                padding: 50px 20px;
+                min-height: auto;
+            }
+
+            .what-we-do h2 {
+                font-size: clamp(1.6rem, 6vw, 2rem);
+                margin-bottom: 32px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .step {
+                padding: 24px 20px;
+                border-radius: 12px;
+            }
+
+            .step-number {
+                width: 42px;
+                height: 42px;
+                line-height: 42px;
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .step h3 {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+
+            .step p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .qr-section {
+                padding: 28px 20px;
+                margin: 28px 0;
+                border-radius: 12px;
+            }
+
+            .qr-section p {
+                font-size: 14px;
+            }
+
+            .qr-box {
+                margin: 16px 0;
+                padding: 16px;
+            }
+
+            .qr-box img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .qr-text {
+                font-size: 13px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .footer-links a {
+                font-size: 13px;
             }
 
             footer {
                 padding: 36px 20px;
             }
 
-            .footer-text {
+            .cta-footer {
+                padding: 16px 28px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 100%;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+
+            .footer-contact {
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .footer-contact a {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .footer-bottom {
                 font-size: 12px;
+                margin-top: 24px;
+            }
+        }
+
+        /* TABLET */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            nav {
+                gap: 24px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .nav-contact {
+                gap: 8px;
+            }
+
+            .nav-contact a {
+                font-size: 12px;
+                padding: 8px 12px;
             }
         }
     </style>
