@@ -968,14 +968,12 @@
 
         menuToggle.addEventListener('click', () => {
             menu.classList.toggle('active');
-            menuToggle.textContent = menu.classList.contains('active') ? '✕' : '☰';
         });
 
         // Cerrar menú al hacer click en un link
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                menuToggle.textContent = '☰';
             });
         });
 

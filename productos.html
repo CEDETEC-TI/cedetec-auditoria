@@ -421,7 +421,22 @@
         </div>
     </footer>
 
-    <script>
+        <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer click en un link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
+        });
+
+        // HIDE ON SCROLL - Header desaparece al scrollear hacia abajo
         let lastScrollTop = 0;
         const header = document.querySelector('header');
 
